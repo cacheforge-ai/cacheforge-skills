@@ -21,33 +21,43 @@ Built by [CacheForge](https://app.anvil-ai.io) — making AI agents affordable, 
 
 ## Skills
 
-### ✅ Published (ClawHub + GitHub)
+### 🔍 Code Quality & Security
 
 | Skill | Description | Version | Install |
 |-------|-------------|---------|---------|
 | [vibe-check](skills/vibe-check/) | Code quality auditor — catches "vibe coding" sins | 0.1.1 | `clawhub install vibe-check` |
-| [rug-checker](skills/rug-checker/) | Solana token rug-pull risk analysis (10-point scoring) | 0.1.3 | `clawhub install rug-checker` |
 | [dep-audit](skills/dep-audit/) | Dependency vulnerability scanner (npm, pip, Cargo, Go, Ruby) | 0.1.3 | `clawhub install dep-audit` |
+| [rug-checker](skills/rug-checker/) | Solana token rug-pull risk analysis (10-point scoring) | 0.1.3 | `clawhub install rug-checker` |
+
+### 📡 Observability & Infrastructure
+
+| Skill | Description | Version | Install |
+|-------|-------------|---------|---------|
 | [prom-query](skills/prom-query/) | Prometheus metrics query & alert interpreter | 1.0.1 | `clawhub install prom-query` |
+| [kube-medic](skills/kube-medic/) | Kubernetes cluster triage & pod autopsy | 1.0.1 | `clawhub install kube-medic` |
+| [log-dive](skills/log-dive/) | Unified log search (Loki / Elasticsearch / CloudWatch) | 0.1.1 | `clawhub install log-dive` |
+| [tf-plan-review](skills/tf-plan-review/) | Terraform plan risk assessment & blast radius analysis | 0.1.1 | `clawhub install tf-plan-review` |
 
-### 🧪 Beta (GitHub — ClawHub publishing soon)
+### 🚨 Incident Response
 
-| Skill | Description | Version |
-|-------|-------------|---------|
-| [kube-medic](skills/kube-medic/) | Kubernetes cluster triage & pod autopsy | 0.1.1 |
-| [log-dive](skills/log-dive/) | Unified log search (Loki / Elasticsearch / CloudWatch) | 0.1.1 |
-| [tf-plan-review](skills/tf-plan-review/) | Terraform plan risk assessment & blast radius analysis | 0.1.1 |
-| [pager-triage](skills/pager-triage/) | PagerDuty incident triage & resolution workflows | 0.1.1 |
-| [feed-diet](skills/feed-diet/) | Information diet auditor (HN, RSS/OPML analysis) | 0.1.1 |
-| [meeting-autopilot](skills/meeting-autopilot/) | Meeting transcript → action items, decisions & follow-ups | 0.1.1 |
+| Skill | Description | Version | Install |
+|-------|-------------|---------|---------|
+| [pager-triage](skills/pager-triage/) | PagerDuty incident triage & resolution workflows | 0.1.1 | `clawhub install pager-triage` |
 
-### 🔜 Coming Soon
+### 🧠 Productivity
+
+| Skill | Description | Version | Install |
+|-------|-------------|---------|---------|
+| [feed-diet](skills/feed-diet/) | Information diet auditor (HN, RSS/OPML analysis) | 0.1.1 | `clawhub install feed-diet` |
+| [meeting-autopilot](skills/meeting-autopilot/) | Meeting transcript → action items, decisions & follow-ups | 0.1.1 | `clawhub install meeting-autopilot` |
+
+### 🔜 Coming This Week
 
 | Skill | Description | ETA |
 |-------|-------------|-----|
-| sentry-scout | Sentry error triage & stacktrace analysis | This week |
-| test-pilot | Playwright test runner & failure analyzer | This week |
-| stripe-dash | Stripe revenue intelligence (read-only) | This week |
+| sentry-scout | Sentry error triage & stacktrace analysis | Mon–Tue |
+| test-pilot | Playwright test runner & failure analyzer | Wed |
+| stripe-dash | Stripe revenue intelligence (read-only) | Thu–Fri |
 
 ## Quick Start
 
@@ -72,11 +82,11 @@ cp -r cacheforge-skills/skills/vibe-check ~/.openclaw/skills/
 
 📊 **Screenshot-worthy output** — scored reports, risk matrices, ASCII charts, and emoji-rich Markdown. Built to be shared.
 
-⚡ **Battle-tested** — this entire skill suite was built, reviewed, and hardened in a single day using a multi-agent pipeline (scout → judge → builder → reviewer) running through CacheForge. 30M+ tokens. 455 requests. 10 production skills.
+⚡ **Battle-tested** — this entire skill suite was built, reviewed, and hardened in a single day using a multi-agent pipeline running through CacheForge. 30M+ tokens. 455 requests. 10 production skills.
 
 ## The Observability Stack
 
-CacheForge is building the **only complete observability suite** on ClawHub:
+CacheForge is the **only publisher on ClawHub with a complete observability suite**:
 
 ```
 ┌─────────────┐  ┌──────────┐  ┌───────────────┐  ┌──────────────┐
@@ -89,26 +99,6 @@ CacheForge is building the **only complete observability suite** on ClawHub:
 ```
 
 Query Prometheus metrics → correlate with logs → triage the PagerDuty alert → trace the Sentry error. All through your OpenClaw agent.
-
-## Skill Categories
-
-### 🔍 Code Quality & Security
-- **vibe-check** — catches AI-generated anti-patterns, missing error handling, copy-paste sins
-- **dep-audit** — CVE scanning across 5 ecosystems with fix suggestions
-- **rug-checker** — on-chain Solana token analysis with 10-point risk scoring
-
-### 📡 Observability & Infrastructure
-- **prom-query** — PromQL queries, alert interpretation, metric correlation (supports Thanos, Mimir, VictoriaMetrics)
-- **log-dive** — unified log search across Loki, Elasticsearch, and CloudWatch
-- **kube-medic** — pod autopsy, deployment rollout status, resource pressure analysis
-- **tf-plan-review** — Terraform plan blast radius, security risks, cost impact with AI-powered review
-
-### 🚨 Incident Response
-- **pager-triage** — PagerDuty incident management with acknowledge, resolve, and note workflows
-
-### 🧠 Productivity
-- **feed-diet** — analyze your HN activity and RSS consumption patterns
-- **meeting-autopilot** — structured action items, decisions, and follow-up drafts from transcripts
 
 ## Discord v2 Ready
 
