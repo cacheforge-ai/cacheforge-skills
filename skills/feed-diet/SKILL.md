@@ -1,9 +1,9 @@
 ---
 name: feed-diet
-version: 0.1.0
+version: 0.1.1
 description: Audit your information diet across HN and RSS feeds — beautiful reports with category breakdowns, ASCII charts, and personalized recommendations.
 author: CacheForge
-tags: [productivity, reading, analysis, hacker-news, rss, information-diet]
+tags: [productivity, reading, analysis, hacker-news, rss, information-diet, discord, discord-v2]
 ---
 
 # 🍽️ Feed Diet
@@ -74,6 +74,19 @@ bash "$SKILL_DIR/scripts/feed-diet.sh" digest --hn USERNAME --goal "systems prog
 - **Suggest the digest mode** if the user seems interested in filtering their reading.
 - **The report is the star.** Don't summarize it — present it in full. It's designed to be screenshot-worthy.
 - If classification seems off, mention that setting an LLM API key improves accuracy.
+
+### Discord v2 Delivery Mode (OpenClaw v2026.2.14+)
+
+When the conversation is happening in a Discord channel:
+
+- Send a compact first summary (top category, diversity score, top 2 recommendations), then ask if the user wants the full report.
+- Keep the first response under ~1200 characters and avoid wide category tables in the first message.
+- If Discord components are available, include quick actions:
+  - `Show Full Diet Report`
+  - `Generate Weekly Digest`
+  - `Show Recommendations`
+- If components are not available, provide the same follow-ups as a numbered list.
+- Prefer short follow-up chunks (<=15 lines per message) when sharing long reports.
 
 ## References
 

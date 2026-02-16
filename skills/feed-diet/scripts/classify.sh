@@ -14,6 +14,11 @@ source "$(dirname "$0")/common.sh"
 
 BATCH_SIZE="${FEED_DIET_BATCH_SIZE:-25}"
 
+if ! command -v jq >/dev/null 2>&1; then
+  err "jq is required for safe JSON construction in classify.sh"
+  exit 1
+fi
+
 # ─── Read all items ──────────────────────────────────────────────────
 ITEMS=()
 while IFS= read -r line; do
@@ -37,17 +42,17 @@ for ((i = 0; i < TOTAL; i += BATCH_SIZE)); do
   [ "$BATCH_END" -gt "$TOTAL" ] && BATCH_END=$TOTAL
   BATCH_COUNT=$((BATCH_END - i))
 
-  # Build the batch JSON array
-  BATCH_JSON="["
+  # Build the batch JSON array safely via jq
+  BATCH_JSON="[]"
   for ((j = i; j < BATCH_END; j++)); do
     ITEM="${ITEMS[$j]}"
-    TITLE=$(echo "$ITEM" | python3 -c "import json,sys; print(json.load(sys.stdin).get('title', json.load(open('/dev/stdin')).get('item_title','')))" 2>/dev/null || echo "$ITEM" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d.get('title','') or d.get('item_title',''))" 2>/dev/null)
-    URL=$(echo "$ITEM" | python3 -c "import json,sys; print(json.load(sys.stdin).get('url',''))" 2>/dev/null)
-    
-    [ "$j" -gt "$i" ] && BATCH_JSON+=","
-    BATCH_JSON+="{\"idx\":$j,\"title\":$(echo "$TITLE" | python3 -c "import json,sys; print(json.dumps(sys.stdin.read().strip()))" 2>/dev/null),\"url\":$(echo "$URL" | python3 -c "import json,sys; print(json.dumps(sys.stdin.read().strip()))" 2>/dev/null)}"
+    TITLE=$(printf '%s' "$ITEM" | jq -r '.title // .item_title // ""' 2>/dev/null || echo "")
+    URL=$(printf '%s' "$ITEM" | jq -r '.url // ""' 2>/dev/null || echo "")
+
+    ENTRY=$(jq -cn --argjson idx "$j" --arg title "$TITLE" --arg url "$URL" \
+      '{idx: $idx, title: $title, url: $url}')
+    BATCH_JSON=$(jq -cn --argjson arr "$BATCH_JSON" --argjson entry "$ENTRY" '$arr + [$entry]')
   done
-  BATCH_JSON+="]"
 
   # Build the classification prompt
   PROMPT="Classify each item into exactly one category. Categories:
@@ -76,38 +81,43 @@ No explanation, no markdown fences, just the JSON array."
 
   # Method 2: Use the ANTHROPIC_API_KEY directly
   if [ -z "$RESULT" ] && [ -n "${ANTHROPIC_API_KEY:-}" ]; then
-    ESCAPED_PROMPT=$(echo "$PROMPT" | python3 -c "import json,sys; print(json.dumps(sys.stdin.read().strip()))" 2>/dev/null)
-    RESULT=$(curl -sf --max-time 30 \
+    request_body=$(jq -n \
+      --arg model "claude-sonnet-4-20250514" \
+      --arg prompt "$PROMPT" \
+      '{
+        model: $model,
+        max_tokens: 1024,
+        messages: [{role: "user", content: $prompt}]
+      }')
+    RESULT=$(printf '%s' "$request_body" | curl -sf --max-time 30 \
       -H "x-api-key: ${ANTHROPIC_API_KEY}" \
       -H "anthropic-version: 2023-06-01" \
       -H "content-type: application/json" \
-      -d "{\"model\":\"claude-sonnet-4-20250514\",\"max_tokens\":1024,\"messages\":[{\"role\":\"user\",\"content\":${ESCAPED_PROMPT}}]}" \
-      https://api.anthropic.com/v1/messages 2>/dev/null | python3 -c "
-import json, sys
-resp = json.load(sys.stdin)
-text = resp['content'][0]['text']
-print(text)
-" 2>/dev/null) || RESULT=""
+      -d @- \
+      https://api.anthropic.com/v1/messages 2>/dev/null | jq -r '.content[0].text // empty' 2>/dev/null) || RESULT=""
   fi
 
   # Method 3: Use OPENAI_API_KEY
   if [ -z "$RESULT" ] && [ -n "${OPENAI_API_KEY:-}" ]; then
-    ESCAPED_PROMPT=$(echo "$PROMPT" | python3 -c "import json,sys; print(json.dumps(sys.stdin.read().strip()))" 2>/dev/null)
-    RESULT=$(curl -sf --max-time 30 \
+    request_body=$(jq -n \
+      --arg model "gpt-4o-mini" \
+      --arg prompt "$PROMPT" \
+      '{
+        model: $model,
+        max_tokens: 1024,
+        messages: [{role: "user", content: $prompt}]
+      }')
+    RESULT=$(printf '%s' "$request_body" | curl -sf --max-time 30 \
       -H "Authorization: Bearer ${OPENAI_API_KEY}" \
       -H "content-type: application/json" \
-      -d "{\"model\":\"gpt-4o-mini\",\"messages\":[{\"role\":\"user\",\"content\":${ESCAPED_PROMPT}}],\"max_tokens\":1024}" \
-      https://api.openai.com/v1/chat/completions 2>/dev/null | python3 -c "
-import json, sys
-resp = json.load(sys.stdin)
-print(resp['choices'][0]['message']['content'])
-" 2>/dev/null) || RESULT=""
+      -d @- \
+      https://api.openai.com/v1/chat/completions 2>/dev/null | jq -r '.choices[0].message.content // empty' 2>/dev/null) || RESULT=""
   fi
 
   # Method 4: Rule-based fallback (keyword matching)
   if [ -z "$RESULT" ]; then
     warn "No LLM available — using keyword-based classification (set ANTHROPIC_API_KEY or OPENAI_API_KEY for better results)"
-    RESULT="["
+    RESULT="[]"
     for ((j = i; j < BATCH_END; j++)); do
       ITEM="${ITEMS[$j]}"
       CATEGORY=$(echo "$ITEM" | python3 -c "
@@ -196,10 +206,9 @@ if scores[best] == 0:
         best = 'news'
 print(best)
 " 2>/dev/null)
-      [ "$j" -gt "$i" ] && RESULT+=","
-      RESULT+="{\"idx\":$j,\"category\":\"${CATEGORY}\"}"
+      ENTRY=$(jq -cn --argjson idx "$j" --arg category "$CATEGORY" '{idx: $idx, category: $category}')
+      RESULT=$(jq -cn --argjson arr "$RESULT" --argjson entry "$ENTRY" '$arr + [$entry]')
     done
-    RESULT+="]"
   fi
 
   # Parse LLM result and merge with original items

@@ -1,7 +1,7 @@
 # Operability Guide — pager-triage
 
-**Version:** 0.1.0
-**Last updated:** 2026-02-15
+**Version:** 0.1.1
+**Last updated:** 2026-02-16
 
 ---
 
@@ -188,4 +188,4 @@ The tool targets PagerDuty REST API **v2** (the current stable version as of 202
 
 ---
 
-<sub>Operability documentation for pager-triage v0.1.0 · [CacheForge](https://cacheforge.com)</sub>
+<sub>Operability documentation for pager-triage v0.1.1 · [CacheForge](https://cacheforge.com)</sub>

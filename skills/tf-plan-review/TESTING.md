@@ -22,7 +22,7 @@ bash scripts/tf-plan-review.sh --version
 
 **Expected:**
 - `--help` prints usage with subcommands and environment variables
-- `--version` prints `tf-plan-review v0.1.0`
+- `--version` prints `tf-plan-review v0.1.1`
 
 ## Test 2: Unknown Subcommand
 
@@ -183,7 +183,7 @@ echo "Exit code: $?"
 ```bash
 # If tofu is installed:
 TF_BINARY=tofu bash scripts/tf-plan-review.sh --version
-# Should still output: tf-plan-review v0.1.0
+# Should still output: tf-plan-review v0.1.1
 
 # If tofu is NOT installed:
 TF_BINARY=tofu bash scripts/tf-plan-review.sh plan /tmp/tf-plan-review-valid 2>/dev/null | jq -r '.message'

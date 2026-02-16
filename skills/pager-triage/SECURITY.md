@@ -1,7 +1,7 @@
 # Security Model — pager-triage
 
-**Version:** 0.1.0
-**Last updated:** 2026-02-15
+**Version:** 0.1.1
+**Last updated:** 2026-02-16
 
 ---
 
@@ -187,4 +187,4 @@ All write operations are fully auditable:
 
 ---
 
-<sub>Security documentation for pager-triage v0.1.0 · [CacheForge](https://cacheforge.com)</sub>
+<sub>Security documentation for pager-triage v0.1.1 · [CacheForge](https://cacheforge.com)</sub>

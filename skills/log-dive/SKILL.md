@@ -4,9 +4,9 @@ description: >
   Unified log search across Loki, Elasticsearch, and CloudWatch.
   Natural language queries translated to LogQL, ES DSL, or CloudWatch filter patterns.
   Read-only. Never modifies or deletes logs.
-version: 0.1.0
-author: cacheforge
-tags: [logs, observability, loki, elasticsearch, cloudwatch, incident-response, sre]
+version: 0.1.1
+author: CacheForge
+tags: [logs, observability, loki, elasticsearch, cloudwatch, incident-response, sre, discord, discord-v2]
 ---
 
 # Log Dive — Unified Log Search 🤿
@@ -141,6 +141,19 @@ After receiving log output, you MUST:
 5. **Summarize actionably** — "The checkout service started returning 500s at 14:23 because the database connection pool was exhausted (max 10 connections, 10 in use). The pool exhaustion was triggered by a slow query in the inventory service."
 
 **NEVER dump raw log output to the user.** Always summarize, extract patterns, and present structured findings.
+
+### Discord v2 Delivery Mode (OpenClaw v2026.2.14+)
+
+When the conversation is happening in a Discord channel:
+
+- Send a compact incident summary first (backend, query intent, top error types, root-cause hypothesis), then ask if the user wants full detail.
+- Keep the first response under ~1200 characters and avoid dumping raw log lines in the first message.
+- If Discord components are available, include quick actions:
+  - `Show Error Timeline`
+  - `Show Top Error Patterns`
+  - `Run Related Service Query`
+- If components are not available, provide the same follow-ups as a numbered list.
+- Prefer short follow-up chunks (<=15 lines per message) when sharing timelines or grouped findings.
 
 ## Query Language Reference
 

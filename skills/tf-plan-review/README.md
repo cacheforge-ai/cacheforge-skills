@@ -35,6 +35,13 @@ Every resource change is classified:
 - **Pre-apply checklist** — human-readable verification list
 - **OpenTofu support** — seamless `tofu` support via `TF_BINARY` env var
 
+## OpenClaw Discord v2 Ready
+
+Compatible with OpenClaw Discord channel behavior documented for v2026.2.14+:
+- Compact first risk summary (overall risk + critical/destructive counts)
+- Component-style quick actions when available (`Show Critical Changes`, `Show Destroyed Resources`, `Show Pre-Apply Checklist`)
+- Numbered-list fallback when components are unavailable
+
 ## Usage
 
 Just ask your agent:

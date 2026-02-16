@@ -2,7 +2,7 @@
 
 **AI-powered PagerDuty incident triage for OpenClaw — because nobody should parse JSON at 3am.**
 
-[![Version](https://img.shields.io/badge/version-0.1.0-blue)]()
+[![Version](https://img.shields.io/badge/version-0.1.1-blue)]()
 [![License](https://img.shields.io/badge/license-MIT-green)]()
 [![Author](https://img.shields.io/badge/by-CacheForge-orange)]()
 
@@ -15,7 +15,7 @@
 ## Quick Install
 
 ```bash
-openclaw skill install cacheforge/pager-triage
+clawhub install cacheforge/pager-triage
 ```
 
 ## Setup (2 minutes)
@@ -116,6 +116,13 @@ Agent:  ✅ Incident P123ABC acknowledged at 03:46 UTC.
 | `ack <id> --confirm` | 🟡 Write | Acknowledge incident |
 | `resolve <id> --confirm` | 🟡 Write | Resolve incident |
 | `note <id> --content "..." --confirm` | 🟡 Write | Add incident note |
+
+## OpenClaw Discord v2 Ready
+
+Compatible with OpenClaw Discord channel behavior documented for v2026.2.14+:
+- Compact first incident summary (active count + highest urgency)
+- Component-style quick actions when available (`Deep Dive Incident`, `Acknowledge Incident`, `Add Incident Note`)
+- Numbered-list fallback when components are unavailable
 
 ## Safety First
 

@@ -105,6 +105,13 @@ Meeting Autopilot uses a **multi-pass extraction pipeline**:
 3. **Generate** — LLM produces professional email drafts and ticket descriptions
 4. **Report** — Everything formatted as beautiful, screenshot-ready Markdown
 
+## OpenClaw Discord v2 Ready
+
+Compatible with OpenClaw Discord channel behavior documented for v2026.2.14+:
+- Compact first response with meeting outcome highlights
+- Component-style quick actions when available (`Show Action Items`, `Show Follow-Up Email Draft`, `Show Ticket Drafts`)
+- Numbered-list fallback when components are unavailable
+
 ## Cross-Meeting Tracking
 
 Every processed meeting is stored locally at `~/.meeting-autopilot/history/` as JSON. This is the foundation for v1.1's cross-meeting tracking: "Did Bob follow through on last week's action items?"

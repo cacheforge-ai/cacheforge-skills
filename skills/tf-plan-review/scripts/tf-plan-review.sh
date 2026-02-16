@@ -7,7 +7,7 @@ set -euo pipefail
 ###############################################################################
 # Constants & Defaults
 ###############################################################################
-VERSION="0.1.0"
+VERSION="0.1.1"
 TF_BINARY="${TF_BINARY:-}"
 PLAN_TIMEOUT="${TF_PLAN_TIMEOUT:-600}"
 
@@ -268,6 +268,7 @@ parse_plan_json() {
 
   # Build final JSON output
   jq -n \
+    --arg version "$VERSION" \
     --arg tf "$tf_binary" \
     --arg dir "$work_dir" \
     --arg overall "$overall_risk" \
@@ -287,7 +288,7 @@ parse_plan_json() {
     --argjson diagnostics "$diagnostics" \
     '{
       tool: "tf-plan-review",
-      version: "0.1.0",
+      version: $version,
       binary: $tf,
       directory: $dir,
       timestamp: (now | todate),

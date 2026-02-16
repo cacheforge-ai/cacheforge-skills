@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.1 (2026-02-16)
+
+### Added
+- Discord v2 delivery guidance in `SKILL.md` for OpenClaw v2026.2.14+:
+  - Compact first response with risk highlights
+  - Component-style quick actions
+  - Numbered fallback when components are unavailable
+- `discord` and `discord-v2` tags in skill metadata
+
+### Changed
+- Metadata normalization: `author` set to `CacheForge`.
+- README: added "OpenClaw Discord v2 Ready" compatibility section.
+- Script and metadata versions bumped to `0.1.1`.
+
+### Fixed
+- `tf-plan-review.sh`: JSON output now reports `version` via script constant (no stale hardcoded value).
+
 ## 0.1.0 (2026-02-15)
 
 ### Added

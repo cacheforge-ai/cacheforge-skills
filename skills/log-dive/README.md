@@ -25,6 +25,13 @@ Log search during incidents is painful:
 - 🔒 **Read-only & safe** — Cannot delete or modify logs. Never caches log output.
 - ⚡ **Smart limits** — Default 200-line cap with pre-filtering to keep token costs sane
 
+## OpenClaw Discord v2 Ready
+
+Compatible with OpenClaw Discord channel behavior documented for v2026.2.14+:
+- Compact first response with top error patterns and likely root cause
+- Component-style quick actions when available (`Show Error Timeline`, `Show Top Error Patterns`, `Run Related Service Query`)
+- Numbered-list fallback when components are unavailable
+
 ## Quick Start
 
 ### 1. Configure at least one backend

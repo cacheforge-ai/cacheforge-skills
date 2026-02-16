@@ -32,8 +32,8 @@
    - `set -euo pipefail` enforced globally
    - All JSON construction uses `jq --arg` / `jq --argjson` — no string interpolation
    - Shell variables are double-quoted throughout
-   - The `--confirm-write` command is validated against the allowlist before `eval`
-   - No user-controlled strings are passed to `eval` outside of the allowlisted write path
+   - The `--confirm-write` command is parsed into an argv array and validated against an allowlist before execution
+   - No `eval`, no backticks, and no `bash -c` execution paths on user-controlled input
 
 ## RBAC Recommendations
 

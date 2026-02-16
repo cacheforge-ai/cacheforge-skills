@@ -22,7 +22,7 @@ set -euo pipefail
 ###############################################################################
 # Constants & Defaults
 ###############################################################################
-VERSION="1.0.0"
+VERSION="1.0.1"
 BRAND="Powered by CacheForge 🏥"
 DEFAULT_SINCE="15m"
 DEFAULT_TAIL=200
@@ -107,7 +107,7 @@ json_envelope() {
 }
 
 err() {
-  echo "{\"error\": $(jq -n --arg m "$1" '$m')}" >&2
+  jq -n --arg m "$1" '{error: $m}' >&2
 }
 
 # Build kubectl base command with optional context/namespace

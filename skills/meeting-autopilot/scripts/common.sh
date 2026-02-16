@@ -2,12 +2,12 @@
 # common.sh — Shared utilities for meeting-autopilot
 # Source this file, don't execute it directly.
 
-set -uo pipefail
+set -euo pipefail
 
 # ── Branding ──────────────────────────────────────────────
 BRAND="Meeting Autopilot"
 BRAND_FOOTER="Powered by CacheForge ✈️"
-VERSION="0.1.0"
+VERSION="0.1.1"
 
 # ── Colors (when stdout is a terminal) ────────────────────
 if [ -t 1 ]; then
@@ -99,6 +99,19 @@ validate_transcript() {
     die "Transcript is too short ($char_count chars)." \
       "Paste a meeting transcript or provide a file path. Minimum ~20 characters."
   fi
+}
+
+# ── Validate API URL base ─────────────────────────────────
+# Allows only http(s) URLs to prevent unsafe curl schemes.
+validate_http_url() {
+  local url="$1"
+  local label="${2:-URL}"
+  case "$url" in
+    http://*|https://*) ;;
+    *)
+      die "$label must use http:// or https:// scheme." "Got: $url"
+      ;;
+  esac
 }
 
 # ── Detect transcript format ─────────────────────────────

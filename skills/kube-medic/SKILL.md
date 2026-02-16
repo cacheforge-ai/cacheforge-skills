@@ -1,6 +1,6 @@
 ---
 name: kube-medic
-version: 1.0.0
+version: 1.0.1
 description: "Kubernetes Cluster Triage & Diagnostics — instant AI-powered incident triage via kubectl"
 author: CacheForge
 license: MIT
@@ -13,6 +13,8 @@ tags:
   - diagnostics
   - infrastructure
   - on-call
+  - discord
+  - discord-v2
 tools:
   - name: kube_medic
     description: "Run Kubernetes cluster diagnostics and triage. Subcommands: sweep, pod, deploy, resources, events."
@@ -218,6 +220,19 @@ When a user says something vague like "something is wrong" or "help me debug", f
 5. **Check `events`** — what changed recently that might have caused this?
 6. **Correlate and diagnose** — connect all the data into a coherent explanation
 7. **Recommend specific actions** — with exact commands the user can approve
+
+### Discord v2 Delivery Mode (OpenClaw v2026.2.14+)
+
+When the conversation is happening in a Discord channel:
+
+- Send a compact triage summary first (cluster health, top impacted workload, top 3 findings), then ask if the user wants the full dump.
+- Keep the first response under ~1200 characters and avoid wide tables in the first message.
+- If Discord components are available, include quick actions:
+  - `Run Full Sweep`
+  - `Pod Autopsy`
+  - `Show Recent Warning Events`
+- If components are not available, provide the same follow-ups as a numbered list.
+- Prefer short follow-up chunks (<=15 lines per message) for long event/log outputs.
 
 ## Output Format
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # common.sh — Shared utilities for feed-diet skill
-# Part of the feed-diet Agent Skill (v0.1.0)
+# Part of the feed-diet Agent Skill (v0.1.1)
 
 set -euo pipefail
 

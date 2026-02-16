@@ -6,6 +6,23 @@ Format follows [Keep a Changelog](https://keepachangelog.com/).
 
 ---
 
+## [0.1.1] — 2026-02-16
+
+### Added
+
+- Discord v2 delivery guidance in `SKILL.md` for OpenClaw v2026.2.14+:
+  - Compact first response for incident triage
+  - Component-style quick actions
+  - Numbered fallback when components are unavailable
+- `discord` and `discord-v2` tags in skill metadata
+
+### Changed
+
+- Metadata normalization: `author` set to `CacheForge`.
+- README: version badge bumped to `0.1.1`.
+- README install command normalized to `clawhub install cacheforge/pager-triage`.
+- README: added "OpenClaw Discord v2 Ready" compatibility section.
+
 ## [0.1.0] — 2026-02-15
 
 ### Added

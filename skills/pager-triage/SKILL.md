@@ -1,13 +1,13 @@
 ---
 name: pager-triage
-version: 0.1.0
+version: 0.1.1
 displayName: PagerDuty Incident Triage
 description: >
   AI-powered incident triage for PagerDuty. List active incidents, deep-dive
   with timeline and alert correlation, check on-call schedules, acknowledge,
   resolve, and annotate — all from your agent. Read-only by default;
   write operations require explicit --confirm.
-author: cacheforge
+author: CacheForge
 tags:
   - pagerduty
   - opsgenie
@@ -15,6 +15,8 @@ tags:
   - sre
   - oncall
   - triage
+  - discord
+  - discord-v2
 tools:
   - name: pd_incidents
     description: List active PagerDuty incidents (triggered + acknowledged)
@@ -359,6 +361,19 @@ If available, use companion skills to investigate root cause:
 - When correlating → suggest prom-query / kube-medic if installed
 - **ALWAYS** show the confirmation preview before executing write operations
 - **NEVER** ack/resolve without the user explicitly asking to do so
+
+### Discord v2 Delivery Mode (OpenClaw v2026.2.14+)
+
+When the conversation is happening in a Discord channel:
+
+- Send a compact first response (active incident count, highest urgency incident, recommended next step), then ask if the user wants full detail.
+- Keep the first response under ~1200 characters and avoid full timeline dumps in the first message.
+- If Discord components are available, include quick actions:
+  - `Deep Dive Incident`
+  - `Acknowledge Incident`
+  - `Add Incident Note`
+- If components are not available, provide the same follow-ups as a numbered list.
+- Prefer short follow-up chunks (<=15 lines per message) for incident timelines and alert lists.
 
 ## Security Notes
 

@@ -4,9 +4,9 @@ description: >
   Turn meeting transcripts into operational outputs — action items, decisions,
   follow-up email drafts, and ticket drafts. Not a summarizer. An operator.
   Accepts VTT, SRT, or plain text. Multi-pass LLM extraction.
-version: 0.1.0
-author: cacheforge
-tags: [meetings, productivity, action-items, email-drafts, transcripts, operations]
+version: 0.1.1
+author: CacheForge
+tags: [meetings, productivity, action-items, email-drafts, transcripts, operations, discord, discord-v2]
 ---
 
 # ✈️ Meeting Autopilot
@@ -89,6 +89,19 @@ The report includes:
 - 🅿️ Parking lot items
 - 📧 Follow-up email draft(s) — ready to send
 - 🎫 Ticket/issue drafts — ready to file
+
+### Discord v2 Delivery Mode (OpenClaw v2026.2.14+)
+
+When the conversation is happening in a Discord channel:
+
+- Send a compact first summary (decision count, action-item count, top owners), then ask if the user wants full report sections.
+- Keep the first response under ~1200 characters and avoid long tables in the first message.
+- If Discord components are available, include quick actions:
+  - `Show Action Items`
+  - `Show Follow-Up Email Draft`
+  - `Show Ticket Drafts`
+- If components are not available, provide the same follow-ups as a numbered list.
+- Prefer short follow-up chunks (<=15 lines per message) for long reports.
 
 ### Step 5: Offer Next Steps
 

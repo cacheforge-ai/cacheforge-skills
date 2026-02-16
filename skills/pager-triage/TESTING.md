@@ -1,7 +1,7 @@
 # Testing Guide — pager-triage
 
-**Version:** 0.1.0
-**Last updated:** 2026-02-15
+**Version:** 0.1.1
+**Last updated:** 2026-02-16
 
 ---
 
@@ -268,4 +268,4 @@ Exit code 0 means valid JSON. Any non-zero means the output wasn't parseable.
 
 ---
 
-<sub>Testing documentation for pager-triage v0.1.0 · [CacheForge](https://cacheforge.com)</sub>
+<sub>Testing documentation for pager-triage v0.1.1 · [CacheForge](https://cacheforge.com)</sub>

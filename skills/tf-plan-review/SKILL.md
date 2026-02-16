@@ -4,9 +4,9 @@ description: >
   Analyze Terraform plans for risk before you apply. Classifies every change
   as safe, moderate, dangerous, or critical. Detects destroys, IAM changes,
   data-loss risks, and blast radius. Entirely read-only — never runs apply.
-version: 0.1.0
-author: cacheforge
-tags: [terraform, opentofu, iac, infrastructure, devops, risk-assessment, plan-review, security]
+version: 0.1.1
+author: CacheForge
+tags: [terraform, opentofu, iac, infrastructure, devops, risk-assessment, plan-review, security, discord, discord-v2]
 ---
 
 # Terraform Plan Analyzer & Risk Assessor
@@ -241,6 +241,19 @@ Run plan, identify all destroys/replaces, then explain:
 - What other resources reference the destroyed ones
 - What will break when the resource is gone
 - Whether Terraform will auto-fix the dependencies or if manual intervention is needed
+
+### Discord v2 Delivery Mode (OpenClaw v2026.2.14+)
+
+When the conversation is happening in a Discord channel:
+
+- Send a compact first summary (overall risk, destroy count, critical resources), then ask if the user wants the full report.
+- Keep the first response under ~1200 characters and avoid large Markdown tables in the first message.
+- If Discord components are available, include quick actions:
+  - `Show Critical Changes`
+  - `Show Destroyed Resources`
+  - `Show Pre-Apply Checklist`
+- If components are not available, provide the same follow-ups as a numbered list.
+- Prefer short follow-up chunks (<=15 lines per message) for large plans.
 
 ## Sensitive Data Handling
 

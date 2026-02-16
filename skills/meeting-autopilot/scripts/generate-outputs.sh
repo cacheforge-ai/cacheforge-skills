@@ -7,7 +7,7 @@
 # Pass 3: Generate follow-up emails, ticket drafts, action table, decisions log
 # Requires: ANTHROPIC_API_KEY or OPENAI_API_KEY env var
 
-set -uo pipefail
+set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/common.sh"
 
@@ -60,6 +60,10 @@ call_llm() {
   user_message="$(cat)"
 
   if [ -n "${ANTHROPIC_API_KEY:-}" ]; then
+    local anthropic_base
+    anthropic_base="${ANTHROPIC_API_URL:-https://api.anthropic.com}"
+    validate_http_url "$anthropic_base" "ANTHROPIC_API_URL"
+
     local request_body
     request_body=$(jq -n \
       --arg model "${ANTHROPIC_MODEL:-claude-sonnet-4-20250514}" \
@@ -74,7 +78,7 @@ call_llm() {
 
     local response
     response=$(printf '%s' "$request_body" | curl -sS \
-      "${ANTHROPIC_API_URL:-https://api.anthropic.com}/v1/messages" \
+      "${anthropic_base%/}/v1/messages" \
       -H "Content-Type: application/json" \
       -H "x-api-key: ${ANTHROPIC_API_KEY}" \
       -H "anthropic-version: 2023-06-01" \
@@ -83,6 +87,10 @@ call_llm() {
     printf '%s' "$response" | jq -r '.content[0].text // empty' 2>/dev/null
 
   elif [ -n "${OPENAI_API_KEY:-}" ]; then
+    local openai_base
+    openai_base="${OPENAI_API_URL:-https://api.openai.com}"
+    validate_http_url "$openai_base" "OPENAI_API_URL"
+
     local request_body
     request_body=$(jq -n \
       --arg model "${OPENAI_MODEL:-gpt-4o}" \
@@ -99,7 +107,7 @@ call_llm() {
 
     local response
     response=$(printf '%s' "$request_body" | curl -sS \
-      "${OPENAI_API_URL:-https://api.openai.com}/v1/chat/completions" \
+      "${openai_base%/}/v1/chat/completions" \
       -H "Content-Type: application/json" \
       -H "Authorization: Bearer ${OPENAI_API_KEY}" \
       -d @- 2>/dev/null)

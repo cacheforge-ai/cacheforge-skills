@@ -28,6 +28,12 @@ validate_cw() {
     jq -n '{"error":"No AWS credentials configured. Set AWS_PROFILE or AWS_ACCESS_KEY_ID/AWS_SECRET_ACCESS_KEY","backend":"cloudwatch","exit_code":1}'
     exit 1
   fi
+
+  if [[ -n "${AWS_ENDPOINT_URL:-}" ]] && [[ ! "${AWS_ENDPOINT_URL}" =~ ^https?:// ]]; then
+    jq -n --arg url "${AWS_ENDPOINT_URL}" \
+      '{"error":"AWS_ENDPOINT_URL must use http:// or https:// scheme","got":$url,"backend":"cloudwatch","exit_code":1}'
+    exit 1
+  fi
 }
 
 # ─── Helper: AWS CLI with common flags ──────────────────────────────────────

@@ -1,5 +1,24 @@
 # Changelog
 
+## v0.1.1 — 2026-02-16
+
+### Added
+- Discord v2 delivery guidance in `SKILL.md` for OpenClaw v2026.2.14+:
+  - Compact first response with key diet insights
+  - Component-style quick actions
+  - Numbered fallback when components are unavailable
+- `discord` and `discord-v2` tags in skill metadata
+
+### Changed
+- README: added "OpenClaw Discord v2 Ready" compatibility section.
+- Script and metadata versions bumped to `0.1.1`.
+- README/sample output version strings updated to `0.1.1`.
+
+### Fixed
+- `classify.sh`: replaced hand-built JSON request/payload assembly with `jq -n --arg` construction.
+- `classify.sh`: LLM request bodies now built via jq and parsed via jq for safer JSON handling.
+- `feed-diet.sh`: fallback category assignment now uses jq JSON merge instead of ad-hoc Python mutation.
+
 ## v0.1.0 — 2026-02-15
 
 ### 🎉 Initial Release
@@ -22,7 +41,7 @@
 - ✅ Hacker News (username → stories)
 - ✅ RSS/Atom feeds via OPML
 
-#### Coming in v0.1.1
+#### Coming in v0.1.2
 - Reddit user history
 - YouTube subscription analysis
 - Feed-by-feed quality scores for OPML

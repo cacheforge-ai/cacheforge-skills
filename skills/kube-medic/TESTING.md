@@ -13,7 +13,7 @@ bash -n scripts/kube-medic.sh && echo "✅ Syntax OK"
 ```bash
 bash scripts/kube-medic.sh --help
 bash scripts/kube-medic.sh --version
-# Expected: kube-medic 1.0.0
+# Expected: kube-medic 1.0.1
 ```
 
 ## Testing with kind (Local Cluster)
