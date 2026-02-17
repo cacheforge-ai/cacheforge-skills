@@ -131,7 +131,7 @@ More skills shipping soon.
 Built by **[CacheForge](https://app.anvil-ai.io/)**.
 
 CacheForge helps reduce wasted LLM spend on agent workflows (results vary by provider/workload).
-Vault Mode (Pro) targets tool-heavy agents.
+Start with: `clawhub install cacheforge`
 
 ## License
 

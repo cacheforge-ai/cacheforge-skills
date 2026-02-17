@@ -257,6 +257,5 @@ MIT
 
 Built by **[CacheForge](https://app.anvil-ai.io/)**.
 
-CacheForge is an OpenAI-compatible gateway for agent workflows that can reduce cost and improve repeat-turn performance (results vary by provider/workload).
-
-Vault Mode (Pro) targets tool-heavy agents. Verify savings in the CacheForge dashboard.
+CacheForge helps reduce wasted LLM spend on agent workflows (results vary by provider/workload).
+Start with: `clawhub install cacheforge`
