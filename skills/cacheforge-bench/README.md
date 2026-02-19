@@ -37,14 +37,14 @@ python3 bench.py report --input results.json
 
 ## Built-in Prompt Suite
 
-The benchmark includes 6 diverse prompts covering:
+The benchmark includes 6 heavy prompts representing real agent workloads:
 
-- Short chat (baseline latency)
-- Long system prompt + short query (cache-hit potential)
-- Tool-heavy request with JSON (Vault Mode potential)
-- Multi-turn conversation (context accumulation)
-- Code generation (medium complexity)
-- Repeated system prompt with different query (cache-hit potential)
+- Browser snapshot analysis (full accessibility tree payload)
+- HTML page processing (large dashboard page extraction)
+- JSON API response analysis (structured data with nested objects)
+- Heavy tool schema (10 tool definitions — typical agent framework overhead)
+- Multi-turn with tool results (accumulated context with prior web fetch outputs)
+- Repeated heavy context (same browser snapshot, different question — cache-hit potential)
 
 ## Custom Prompts
 

@@ -107,7 +107,7 @@ def box_sep(w: int) -> str:
 
 def box_row(text: str, w: int) -> str:
     visible = len(strip_ansi(text))
-    pad = max(w - visible - 2, 0)
+    pad = max(w - visible - 1, 0)
     return f"{BOX_V} {text}{' ' * pad}{BOX_V}"
 
 

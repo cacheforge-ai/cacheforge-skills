@@ -26,16 +26,20 @@ from datetime import datetime, timezone
 RESET = "\033[0m"
 BOLD = "\033[1m"
 DIM = "\033[2m"
-RED = "\033[31m"
-GREEN = "\033[32m"
-YELLOW = "\033[33m"
-CYAN = "\033[36m"
-WHITE = "\033[37m"
-MAGENTA = "\033[35m"
+RED = "\033[91m"
+GREEN = "\033[92m"
+YELLOW = "\033[93m"
+CYAN = "\033[96m"
+WHITE = "\033[97m"
+MAGENTA = "\033[95m"
+
+NO_COLOR = os.environ.get("NO_COLOR") is not None or not sys.stdout.isatty()
 
 
 def c(text: str, *codes: str) -> str:
-    """Wrap *text* in ANSI colour escape sequences."""
+    """Wrap *text* in ANSI colour escape sequences (respects NO_COLOR)."""
+    if NO_COLOR:
+        return str(text)
     return "".join(codes) + str(text) + RESET
 
 
@@ -128,10 +132,11 @@ def box_bot(w: int) -> str:
 
 def box_row(text: str, w: int) -> str:
     visible_len = len(strip_ansi(text))
-    pad = max(w - 2 - visible_len, 0)
-    if visible_len + 2 < w:
+    inner = w - 4  # 4 = "│ " + " │"
+    pad = max(inner - visible_len, 0)
+    if visible_len <= inner:
         return "\u2502 " + text + " " * pad + " \u2502"
-    return "\u2502" + strip_ansi(text)[: w - 2] + "\u2502"
+    return "\u2502 " + strip_ansi(text)[:inner] + " \u2502"
 
 
 def box_empty(w: int) -> str:
@@ -157,13 +162,11 @@ DEFAULT_PRICING = {"input": 3.00, "output": 15.00}
 
 PROVIDER_URLS = {
     "openai": "https://api.openai.com/v1",
-    "anthropic": "https://api.anthropic.com/v1",
     "openrouter": "https://openrouter.ai/api/v1",
 }
 
 PROVIDER_KEY_ENVS = {
     "openai": "OPENAI_API_KEY",
-    "anthropic": "ANTHROPIC_API_KEY",
     "openrouter": "OPENROUTER_API_KEY",
 }
 
@@ -406,7 +409,7 @@ BUILTIN_PROMPTS = [
 
 def _openai_chat(base_url: str, api_key: str, model: str,
                  messages: list, max_tokens: int = 256,
-                 tools: list | None = None) -> dict:
+                 tools=None) -> dict:
     """Send a chat completion request (OpenAI-compatible API)."""
     url = f"{base_url.rstrip('/')}/chat/completions"
     body = {
@@ -489,6 +492,7 @@ def load_custom_prompts(path: str) -> list:
             "name": item.get("name", f"Custom #{i + 1}"),
             "description": item.get("description", "User-provided prompt"),
             "messages": item["messages"],
+            "tools": item.get("tools"),
         })
     return prompts
 
@@ -984,7 +988,7 @@ def main() -> None:
     # run
     p_run = sub.add_parser("run", help="Run benchmark suite against a provider")
     p_run.add_argument("--provider", default="openai",
-                       choices=["openai", "anthropic", "openrouter", "cacheforge", "custom"],
+                       choices=["openai", "openrouter", "cacheforge", "custom"],
                        help="Provider name (default: openai)")
     p_run.add_argument("--model", default="gpt-4o-mini",
                        help="Model name (default: gpt-4o-mini)")

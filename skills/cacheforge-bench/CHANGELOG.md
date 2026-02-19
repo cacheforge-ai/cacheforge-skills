@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.0 — 2026-02-19
+## [1.1.0] - 2026-02-19
 
 ### Added
 - Quick benchmark runner with built-in prompt suite (6 diverse prompts)

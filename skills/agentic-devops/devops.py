@@ -12,6 +12,7 @@ import argparse
 import os
 import platform
 import re
+import shlex
 import shutil
 import socket
 import subprocess
@@ -34,9 +35,13 @@ CYAN = "\033[96m"
 WHITE = "\033[97m"
 MAGENTA = "\033[95m"
 
+NO_COLOR = os.environ.get("NO_COLOR") is not None or not sys.stdout.isatty()
+
 
 def c(text, *codes):
-    """Wrap *text* with ANSI escape codes."""
+    """Wrap *text* with ANSI escape codes (respects NO_COLOR)."""
+    if NO_COLOR:
+        return str(text)
     return "".join(codes) + str(text) + RESET
 
 
@@ -286,7 +291,7 @@ def cmd_docker_logs(args):
     tail = args.tail
     grep_pat = args.grep
 
-    cmd_str = f"docker logs --tail {tail} {container} 2>&1"
+    cmd_str = f"docker logs --tail {tail} {shlex.quote(container)} 2>&1"
     rc, out, err = run(cmd_str, timeout=30)
 
     if rc != 0:
@@ -308,8 +313,8 @@ def cmd_docker_logs(args):
         if grep_pat and re.search(grep_pat, line, re.IGNORECASE):
             # Highlight matches
             highlighted = re.sub(
-                f"({grep_pat})",
-                lambda m: c(m.group(1), BOLD, RED),
+                grep_pat,
+                lambda m: c(m.group(0), BOLD, RED),
                 line,
                 flags=re.IGNORECASE,
             )
@@ -375,11 +380,11 @@ def cmd_docker_compose_status(args):
     w = min(term_width(), 80)
 
     # Try docker compose (v2) first, fall back to docker-compose (v1)
-    cmd_str = f"docker compose -f {compose_file} ps --format json 2>/dev/null"
+    cmd_str = f"docker compose -f {shlex.quote(compose_file)} ps --format json 2>/dev/null"
     rc, out, _ = run(cmd_str, timeout=10)
 
     if rc != 0 or not out:
-        cmd_str = f"docker-compose -f {compose_file} ps 2>&1"
+        cmd_str = f"docker-compose -f {shlex.quote(compose_file)} ps 2>&1"
         rc, out, _ = run(cmd_str, timeout=10)
         if rc != 0:
             print_box("Compose Status", [c(f"  Could not read {compose_file}", RED)], w)
