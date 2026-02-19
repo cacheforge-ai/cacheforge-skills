@@ -49,11 +49,18 @@ python3 context.py compare --before before.json --after after.json
 
 Token estimates use a character-based heuristic (~4 characters per token). This provides reasonable approximations for planning purposes. For precise counts, use a model-specific tokenizer like `tiktoken`.
 
+## Install
+
+```bash
+clawhub install context-engineer
+```
+
+Or clone from [GitHub](https://github.com/cacheforge-ai/cacheforge-skills).
+
 ## License
 
 MIT — see [LICENSE](./LICENSE).
 
-## Links
+---
 
-- Homepage: https://app.anvil-ai.io
-- Author: [CacheForge](https://app.anvil-ai.io)
+Part of the [CacheForge](https://app.anvil-ai.io) toolkit — enterprise-grade LLM optimization for agent workflows.

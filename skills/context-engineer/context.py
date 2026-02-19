@@ -5,6 +5,8 @@ Stdlib-only (no external deps). Renders rich terminal reports with Unicode
 box drawing, block-element bar charts, and ANSI colours.
 
 Token estimates are approximate (word-count heuristic, ~1 token per 4 chars).
+
+Part of the CacheForge toolkit — https://app.anvil-ai.io
 """
 
 import argparse
