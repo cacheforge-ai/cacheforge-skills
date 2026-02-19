@@ -1,24 +1,16 @@
-# CacheForge
+# CacheForge Stats
 
-Primary entrypoint for CacheForge on OpenClaw.
+Terminal analytics for CacheForge usage and savings:
 
-Install `cacheforge` first. It bootstraps companion skills when needed, then routes workflow tasks to:
+- Summary usage windows
+- Breakdown by model/provider/key
+- Savings-focused dashboard view
 
-1. `cacheforge-setup` (onboarding)
-2. `cacheforge-ops` (billing/upstream/keys)
-3. `cacheforge-stats` (usage/savings telemetry)
-
-## Install
-
-```bash
-clawhub install cacheforge
-```
+Use this skill to verify real workload impact in day-to-day runs.
 
 ## What It Does
 
-CacheForge is an OpenAI-compatible gateway for agent workflows. It can reduce wasted LLM spend and improve repeat-turn performance (results vary by provider/workload).
-
-Vault Mode (Pro) targets tool-heavy agents.
+This skill provides terminal-first visibility into usage, spend, and savings so teams can validate CacheForge impact with real workload telemetry.
 
 ## More from CacheForge
 
@@ -26,10 +18,10 @@ This skill is part of the **CacheForge** open skill suite.
 
 | Skill | What it does |
 |-------|--------------|
-| **[cacheforge](https://clawhub.com/cacheforge/cacheforge)** | This skill: primary entrypoint with companion bootstrap. |
+| **[cacheforge](https://clawhub.com/cacheforge/cacheforge)** | Primary entrypoint with companion bootstrap. |
 | **[cacheforge-setup](https://clawhub.com/cacheforge/cacheforge-setup)** | Guided onboarding: register, configure upstream, apply OpenClaw config, validate. |
 | **[cacheforge-ops](https://clawhub.com/cacheforge/cacheforge-ops)** | Day-2 operations: balance, top-up, upstream management, API keys. |
-| **[cacheforge-stats](https://clawhub.com/cacheforge/cacheforge-stats)** | Terminal dashboard for usage, savings, and performance telemetry. |
+| **[cacheforge-stats](https://clawhub.com/cacheforge/cacheforge-stats)** | This skill: terminal dashboard for usage, savings, and performance telemetry. |
 
 Start with:
 

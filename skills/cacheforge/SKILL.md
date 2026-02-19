@@ -1,7 +1,7 @@
 ---
 name: cacheforge
 version: 1.0.0
-description: CacheForge primary skill — bootstrap onboarding + ops + stats for the OpenAI-compatible token optimization gateway. Cut your LLM bill by up to 30% (results vary by provider/workload).
+description: CacheForge primary skill — bootstrap onboarding + ops + stats for the OpenAI-compatible token optimization gateway. Cut your LLM bill by up to 30% or more (results vary by provider/workload).
 author: CacheForge
 license: MIT
 homepage: https://app.anvil-ai.io

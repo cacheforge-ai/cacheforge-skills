@@ -100,7 +100,7 @@ def get_config():
     key = os.environ.get("CACHEFORGE_API_KEY", "")
     if not key:
         print(c("ERROR: CACHEFORGE_API_KEY is not set.", BOLD, RED))
-        print(f"  Export it first:  {c('export CACHEFORGE_API_KEY=cfk_...', DIM)}")
+        print(f"  Export it first:  {c('export CACHEFORGE_API_KEY=cf_...', DIM)}")
         sys.exit(1)
     return base, key
 

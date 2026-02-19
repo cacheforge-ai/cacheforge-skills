@@ -1,14 +1,12 @@
 # CacheForge — Agent Skills
 
-Cut your agent's token bill by up to 93%. CacheForge is a drop-in optimization layer that sits between your agent and your LLM provider. Proprietary multi-layer optimization that goes far beyond caching. One line of config. Zero code changes.
+CacheForge is a drop-in, OpenAI-compatible gateway for agent workflows. It can reduce wasted LLM spend by up to 30% or more and improve repeat-turn performance (results vary by provider/workload).
 
 ## Install
 
 ```bash
-# Install the full CacheForge skill pack (recommended)
-for s in cacheforge cacheforge-setup cacheforge-ops cacheforge-stats; do
-  clawhub install "$s"
-done
+# Install the primary CacheForge skill (recommended)
+clawhub install cacheforge
 ```
 
 ## Skills
@@ -23,25 +21,32 @@ done
 ## Quick Start
 
 ```bash
-# Install the full skill pack
-for s in cacheforge cacheforge-setup cacheforge-ops cacheforge-stats; do clawhub install "$s"; done
+# Install the primary skill
+clawhub install cacheforge
 
-# Guided setup (auto-detects your existing API keys)
-/cacheforge-setup
+# Primary entrypoint (bootstraps companion skills if missing)
+/cacheforge
+
+# If invite-only + email verification are enabled, verify your email,
+# then run /cacheforge again to continue setup and mint your tenant API key (cf_...).
+
+# Setup can print and (with approval) apply OpenClaw config with backup:
+# ~/.openclaw/openclaw.json + .cacheforge.bak
 
 # Check your savings
 /cacheforge-stats
 
-# Check balance or top up
+# Check balance or top up (minimum top-up is typically $10)
 /cacheforge-ops balance
-/cacheforge-ops topup --amount 10
+/cacheforge-ops topup --amount 10 --method stripe
+/cacheforge-ops topup --amount 10 --method crypto
 ```
 
 Or skip the wizard — one env var is all you need:
 
 ```bash
 export OPENAI_BASE_URL=https://app.anvil-ai.io/v1
-export OPENAI_API_KEY=cfk_...  # your CacheForge key
+export OPENAI_API_KEY=cf_...  # your CacheForge tenant API key
 ```
 
 If this deployment is invite-only, also set:
@@ -52,9 +57,11 @@ export CACHEFORGE_INVITE_CODE=...
 
 Every OpenAI-compatible tool (OpenClaw, Claude Code, Cursor, Codex CLI, any agent framework) routes through CacheForge automatically.
 
+Note: `cacheforge` is the primary entrypoint. It can bootstrap companion skills (`cacheforge-setup`, `cacheforge-ops`, `cacheforge-stats`) when needed.
+
 ## What CacheForge Does
 
-CacheForge sits between your agent and your LLM provider (OpenAI, Anthropic, OpenRouter). It applies proprietary multi-layer optimization to fundamentally reduce what gets sent to your provider. Up to 93% token reduction on heavy workloads. Provider-reported usage plus transparent savings telemetry.
+CacheForge sits between your agent and your LLM provider (OpenAI, Anthropic, OpenRouter). It applies proprietary multi-layer optimization for agent workloads and surfaces transparent telemetry so teams can verify impact in the dashboard.
 
 Not a cache. Not a proxy trick. The how is our secret.
 
