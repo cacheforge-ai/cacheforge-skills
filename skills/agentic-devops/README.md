@@ -67,11 +67,18 @@ python3 devops.py health system
 - **Production-grade output** — Unicode box drawing, ANSI colours, status indicators, bar charts. Looks good in any terminal.
 - **Enterprise tone** — Built for SREs and platform engineers who need answers fast.
 
+## Install
+
+```bash
+clawhub install agentic-devops
+```
+
+Or clone from [GitHub](https://github.com/cacheforge-ai/cacheforge-skills).
+
 ## License
 
-MIT — see [LICENSE](LICENSE)
+MIT — see [LICENSE](LICENSE).
 
-## Links
+---
 
-- Homepage: [https://app.anvil-ai.io](https://app.anvil-ai.io)
-- CacheForge Toolkit: [https://app.anvil-ai.io](https://app.anvil-ai.io)
+Part of the [CacheForge](https://app.anvil-ai.io) toolkit — enterprise-grade LLM optimization for agent workflows.
