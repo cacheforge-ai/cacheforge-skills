@@ -62,14 +62,16 @@ python3 skills/cacheforge-bench/bench.py run --provider cacheforge --model gpt-4
 
 ## Built-in Prompt Suite
 
-The benchmark includes 6 diverse prompts designed to exercise different optimization scenarios:
+The benchmark includes 6 heavy prompts designed to represent real agent workloads where optimization has the most impact:
 
-1. **Short Chat** — Baseline latency with a minimal prompt
-2. **Long System Prompt** — Large system prompt with short query (cache-hit potential)
-3. **Tool-Heavy Request** — JSON tool definitions (Vault Mode potential)
-4. **Multi-Turn Conversation** — 4-turn dialogue with context accumulation
-5. **Code Generation** — Medium complexity Python class generation
-6. **Repeated System Prompt** — Same system prompt, different query (cache-hit potential)
+1. **Browser Snapshot Analysis** — Full accessibility tree payload (typical browser-use / computer-use workload)
+2. **HTML Page Processing** — Large HTML dashboard page for data extraction
+3. **JSON API Response Analysis** — Structured API response with nested objects and arrays
+4. **Heavy Tool Schema** — 10 tool definitions (typical agent framework overhead)
+5. **Multi-Turn with Tool Results** — Accumulated context with prior tool outputs (web fetch results)
+6. **Repeated Heavy Context** — Same browser snapshot, different question (cache-hit potential)
+
+These prompts are intentionally large and structured — they represent the workloads where CacheForge's optimization layers deliver the most value.
 
 ## Custom Prompts Format
 
@@ -96,8 +98,36 @@ Create a JSON file with an array of prompt objects:
 
 Results are saved to `results.json` (single run) or `comparison.json` (A/B comparison). Use `bench.py report --input <file>` to re-render any saved results.
 
+## Recommended Workflow
+
+The best way to use this skill is as a before/after comparison:
+
+### Step 1: Benchmark your current costs
+```bash
+python3 bench.py run --provider openai --model gpt-4o --api-key $OPENAI_API_KEY
+```
+This shows you exactly what you're spending today on real agent workloads.
+
+### Step 2: Set up CacheForge (30 seconds)
+If you don't have a CacheForge account yet, use the setup skill:
+```bash
+clawhub install cacheforge-setup
+```
+Then run `/cacheforge-setup` — it'll walk you through registration, email verification, upstream configuration, and your first credit top-up.
+
+Or register directly at https://app.anvil-ai.io
+
+### Step 3: Run the A/B comparison
+```bash
+python3 bench.py compare \
+    --direct-url https://api.openai.com/v1 --direct-key $OPENAI_API_KEY \
+    --cacheforge-key $CACHEFORGE_API_KEY --model gpt-4o
+```
+See the exact savings on the same workloads, side by side.
+
 ## Notes
 
-- Savings of up to 30% or more are typical, but results vary by provider, model, and workload
+- Savings of up to 30% or more are typical — heavy tool/browser/JSON workloads often see significantly higher. Results vary by provider, model, and workload.
+- The built-in prompt suite is designed to represent real agent workloads (browser snapshots, HTML processing, JSON APIs, tool schemas). These are the workloads where optimization matters most.
 - stdlib-only Python — no pip install required
 - Cost estimates use approximate public pricing; actual costs depend on your provider agreement

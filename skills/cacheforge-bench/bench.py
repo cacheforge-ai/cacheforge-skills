@@ -184,168 +184,217 @@ def estimate_cost(model: str, prompt_tokens: int, completion_tokens: int) -> flo
 # Built-in benchmark prompt suite
 # ---------------------------------------------------------------------------
 
+_HEAVY_TOOL_SCHEMA = [
+    {"type": "function", "function": {"name": "web_fetch", "description": "Fetch and extract readable content from a URL (HTML to markdown/text). Use for lightweight page access without browser automation.", "parameters": {"type": "object", "properties": {"url": {"type": "string", "description": "HTTP or HTTPS URL to fetch."}, "extractMode": {"type": "string", "enum": ["markdown", "text"], "description": "Extraction mode."}, "maxChars": {"type": "number", "description": "Maximum characters to return."}}, "required": ["url"]}}},
+    {"type": "function", "function": {"name": "browser_snapshot", "description": "Take a snapshot of the current browser page. Returns accessibility tree with interactive element references for automation.", "parameters": {"type": "object", "properties": {"action": {"type": "string", "enum": ["snapshot", "screenshot", "navigate", "act"]}, "url": {"type": "string"}, "selector": {"type": "string"}, "ref": {"type": "string"}, "compact": {"type": "boolean"}, "fullPage": {"type": "boolean"}}, "required": ["action"]}}},
+    {"type": "function", "function": {"name": "browser_act", "description": "Perform an action on the browser page: click, type, press, hover, drag, select, fill, resize, wait, evaluate, close.", "parameters": {"type": "object", "properties": {"action": {"type": "string", "enum": ["act"]}, "request": {"type": "object", "properties": {"kind": {"type": "string", "enum": ["click", "type", "press", "hover", "drag", "select", "fill", "resize", "wait", "evaluate", "close"]}, "ref": {"type": "string"}, "text": {"type": "string"}, "key": {"type": "string"}, "modifiers": {"type": "array", "items": {"type": "string"}}, "submit": {"type": "boolean"}, "slowly": {"type": "boolean"}, "timeMs": {"type": "number"}, "textGone": {"type": "string"}}, "required": ["kind"]}}, "required": ["action", "request"]}}},
+    {"type": "function", "function": {"name": "exec_command", "description": "Execute shell commands with background continuation. Use for running scripts, builds, tests, and system operations.", "parameters": {"type": "object", "properties": {"command": {"type": "string", "description": "Shell command to execute."}, "workdir": {"type": "string"}, "timeout": {"type": "number"}, "background": {"type": "boolean"}, "pty": {"type": "boolean"}}, "required": ["command"]}}},
+    {"type": "function", "function": {"name": "read_file", "description": "Read the contents of a file. Supports text files and images.", "parameters": {"type": "object", "properties": {"path": {"type": "string"}, "offset": {"type": "number"}, "limit": {"type": "number"}}, "required": ["path"]}}},
+    {"type": "function", "function": {"name": "write_file", "description": "Write content to a file. Creates parent directories automatically.", "parameters": {"type": "object", "properties": {"path": {"type": "string"}, "content": {"type": "string"}}, "required": ["path", "content"]}}},
+    {"type": "function", "function": {"name": "edit_file", "description": "Edit a file by replacing exact text. The old text must match exactly including whitespace.", "parameters": {"type": "object", "properties": {"path": {"type": "string"}, "old_string": {"type": "string"}, "new_string": {"type": "string"}}, "required": ["path", "old_string", "new_string"]}}},
+    {"type": "function", "function": {"name": "search_code", "description": "Search across files using ripgrep. Returns matching lines with file paths and line numbers.", "parameters": {"type": "object", "properties": {"pattern": {"type": "string"}, "path": {"type": "string"}, "include": {"type": "string"}, "context": {"type": "number"}}, "required": ["pattern"]}}},
+    {"type": "function", "function": {"name": "memory_search", "description": "Semantically search memory files. Returns top matching snippets with file paths and line numbers.", "parameters": {"type": "object", "properties": {"query": {"type": "string"}, "maxResults": {"type": "number"}, "minScore": {"type": "number"}}, "required": ["query"]}}},
+    {"type": "function", "function": {"name": "web_search", "description": "Search the web using Brave Search API. Returns titles, URLs, and snippets.", "parameters": {"type": "object", "properties": {"query": {"type": "string"}, "count": {"type": "number", "minimum": 1, "maximum": 10}, "country": {"type": "string"}, "freshness": {"type": "string"}}, "required": ["query"]}}},
+]
+
+_FAKE_HTML_BODY = """<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboard - Analytics Platform</title><link rel="stylesheet" href="/assets/css/main.css"><script src="/assets/js/analytics.js" defer></script></head><body><nav class="navbar navbar-expand-lg navbar-dark bg-primary"><div class="container-fluid"><a class="navbar-brand" href="/">AnalyticsPro</a><div class="collapse navbar-collapse"><ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link active" href="/dashboard">Dashboard</a></li><li class="nav-item"><a class="nav-link" href="/reports">Reports</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Settings</a><ul class="dropdown-menu"><li><a class="dropdown-item" href="/settings/profile">Profile</a></li><li><a class="dropdown-item" href="/settings/billing">Billing</a></li><li><a class="dropdown-item" href="/settings/api-keys">API Keys</a></li><li><hr class="dropdown-divider"></li><li><a class="dropdown-item" href="/settings/team">Team Management</a></li></ul></li></ul><div class="d-flex align-items-center"><span class="badge bg-success me-3">Pro Plan</span><img src="/avatar.jpg" class="rounded-circle" width="32" alt="User"></div></div></div></nav><main class="container-fluid mt-4"><div class="row"><div class="col-xl-3 col-md-6 mb-4"><div class="card border-left-primary shadow h-100 py-2"><div class="card-body"><div class="row no-gutters align-items-center"><div class="col mr-2"><div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Monthly Revenue</div><div class="h5 mb-0 font-weight-bold text-gray-800">$42,847.92</div><div class="text-xs text-success mt-1">+12.5% from last month</div></div><div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div></div></div></div></div><div class="col-xl-3 col-md-6 mb-4"><div class="card border-left-success shadow h-100 py-2"><div class="card-body"><div class="row no-gutters align-items-center"><div class="col mr-2"><div class="text-xs font-weight-bold text-success text-uppercase mb-1">Active Users</div><div class="h5 mb-0 font-weight-bold text-gray-800">2,847</div><div class="text-xs text-success mt-1">+8.3% from last month</div></div></div></div></div></div><div class="col-xl-3 col-md-6 mb-4"><div class="card border-left-info shadow h-100 py-2"><div class="card-body"><div class="row no-gutters align-items-center"><div class="col mr-2"><div class="text-xs font-weight-bold text-info text-uppercase mb-1">API Requests (24h)</div><div class="h5 mb-0 font-weight-bold text-gray-800">1,284,937</div></div></div></div></div></div></div><div class="row"><div class="col-lg-8"><div class="card shadow mb-4"><div class="card-header py-3 d-flex flex-row align-items-center justify-content-between"><h6 class="m-0 font-weight-bold text-primary">Revenue Overview</h6></div><div class="card-body"><canvas id="revenueChart"></canvas><table class="table table-striped mt-3"><thead><tr><th>Date</th><th>Transactions</th><th>Revenue</th><th>Avg Order</th><th>Conversion Rate</th></tr></thead><tbody><tr><td>2026-02-18</td><td>1,247</td><td>$8,432.10</td><td>$6.76</td><td>3.2%</td></tr><tr><td>2026-02-17</td><td>1,189</td><td>$7,891.45</td><td>$6.64</td><td>3.1%</td></tr><tr><td>2026-02-16</td><td>1,302</td><td>$9,104.22</td><td>$6.99</td><td>3.4%</td></tr><tr><td>2026-02-15</td><td>987</td><td>$6,234.87</td><td>$6.32</td><td>2.8%</td></tr><tr><td>2026-02-14</td><td>1,456</td><td>$11,234.56</td><td>$7.71</td><td>3.9%</td></tr></tbody></table></div></div></div><div class="col-lg-4"><div class="card shadow mb-4"><div class="card-header py-3"><h6 class="m-0 font-weight-bold text-primary">Traffic Sources</h6></div><div class="card-body"><div class="chart-pie"><canvas id="trafficChart"></canvas></div><div class="mt-4"><div class="d-flex justify-content-between"><span>Direct</span><span>42.3%</span></div><div class="progress mb-2"><div class="progress-bar bg-primary" style="width:42.3%"></div></div><div class="d-flex justify-content-between"><span>Organic Search</span><span>28.7%</span></div><div class="progress mb-2"><div class="progress-bar bg-success" style="width:28.7%"></div></div><div class="d-flex justify-content-between"><span>Referral</span><span>18.2%</span></div><div class="progress mb-2"><div class="progress-bar bg-info" style="width:18.2%"></div></div><div class="d-flex justify-content-between"><span>Social</span><span>10.8%</span></div><div class="progress mb-2"><div class="progress-bar bg-warning" style="width:10.8%"></div></div></div></div></div></div></div></main><footer class="footer mt-auto py-3 bg-light"><div class="container text-center text-muted">AnalyticsPro Dashboard v3.2.1 &copy; 2026</div></footer></body></html>"""
+
+_FAKE_API_RESPONSE = json.dumps({
+    "data": {
+        "users": [
+            {"id": f"usr_{i:04d}", "email": f"user{i}@example.com", "name": f"User {i}",
+             "role": "admin" if i < 3 else "member", "status": "active",
+             "created_at": f"2026-01-{(i % 28) + 1:02d}T10:00:00Z",
+             "last_login": f"2026-02-{(i % 19) + 1:02d}T{8 + i % 12}:00:00Z",
+             "metadata": {"plan": "pro" if i < 5 else "free", "tokens_used": 10000 + i * 2500,
+                          "tokens_limit": 100000, "features": ["api", "dashboard", "export"] if i < 5 else ["api"],
+                          "billing": {"method": "stripe", "customer_id": f"cus_{i * 1111:08x}",
+                                      "subscription_id": f"sub_{i * 2222:08x}"}}}
+            for i in range(20)
+        ],
+        "pagination": {"page": 1, "per_page": 20, "total": 847, "total_pages": 43},
+        "aggregations": {
+            "by_plan": {"pro": 142, "free": 705},
+            "by_status": {"active": 798, "suspended": 31, "pending": 18},
+            "by_role": {"admin": 12, "member": 835},
+        }
+    },
+    "meta": {"request_id": "req_abc123", "processing_time_ms": 47, "cache_hit": False},
+}, indent=2)
+
+_FAKE_BROWSER_SNAPSHOT = """role: WebArea, name: "GitHub - cacheforge-ai/cacheforge-skills"
+  role: banner
+    role: navigation, name: "Global"
+      role: link, name: "Homepage", ref: e1
+      role: search, name: "Search or jump to..."
+        role: textbox, name: "Search", ref: e2
+      role: list
+        role: listitem
+          role: link, name: "Pull requests", ref: e3
+        role: listitem
+          role: link, name: "Issues", ref: e4
+        role: listitem
+          role: link, name: "Marketplace", ref: e5
+        role: listitem
+          role: link, name: "Explore", ref: e6
+  role: main
+    role: heading, name: "cacheforge-ai/cacheforge-skills", level: 1
+      role: link, name: "cacheforge-ai", ref: e7
+      role: link, name: "cacheforge-skills", ref: e8
+    role: navigation, name: "Repository"
+      role: link, name: "Code", ref: e9
+      role: link, name: "Issues 0", ref: e10
+      role: link, name: "Pull requests 3", ref: e11
+      role: link, name: "Actions", ref: e12
+      role: link, name: "Security", ref: e13
+      role: link, name: "Insights", ref: e14
+    role: group, name: "Repository stats"
+      role: link, name: "6 stars", ref: e15
+      role: link, name: "2 forks", ref: e16
+      role: link, name: "MIT license", ref: e17
+    role: article, name: "README"
+      role: heading, name: "CacheForge — Agent Skills", level: 1
+      role: paragraph, text: "Cut your agent's token bill by up to 30% or more. CacheForge is a drop-in optimization layer that sits between your agent and your LLM provider."
+      role: heading, name: "Skills", level: 2
+      role: table
+        role: row
+          role: cell, text: "cacheforge"
+          role: cell, text: "Connect any OpenAI-compatible agent to CacheForge"
+        role: row
+          role: cell, text: "cacheforge-setup"
+          role: cell, text: "Guided onboarding — register, configure upstream"
+        role: row
+          role: cell, text: "cacheforge-ops"
+          role: cell, text: "Account operations — balance, top up, API keys"
+        role: row
+          role: cell, text: "cacheforge-stats"
+          role: cell, text: "Terminal dashboard — usage, savings, breakdown"
+        role: row
+          role: cell, text: "cacheforge-bench"
+          role: cell, text: "LLM cost benchmark runner"
+        role: row
+          role: cell, text: "context-engineer"
+          role: cell, text: "Context window optimizer"
+        role: row
+          role: cell, text: "agentic-devops"
+          role: cell, text: "Production-grade DevOps toolkit"
+    role: complementary, name: "About"
+      role: paragraph, text: "Agent Skills for CacheForge — enterprise-grade LLM optimization"
+      role: list, name: "Topics"
+        role: listitem
+          role: link, name: "ai-agents", ref: e18
+        role: listitem
+          role: link, name: "llm", ref: e19
+        role: listitem
+          role: link, name: "token-optimization", ref: e20
+    role: navigation, name: "File list"
+      role: table
+        role: row
+          role: cell, text: "skills/"
+          role: cell, text: "feat: add agentic-devops skill"
+          role: cell, text: "2 hours ago"
+        role: row
+          role: cell, text: "README.md"
+          role: cell, text: "merge: resolve README conflict"
+          role: cell, text: "2 hours ago"
+"""
+
 BUILTIN_PROMPTS = [
     {
-        "name": "Short Chat",
-        "description": "Baseline latency — minimal prompt",
-        "messages": [
-            {"role": "user", "content": "What is 2 + 2?"},
-        ],
-    },
-    {
-        "name": "Long System Prompt",
-        "description": "Cache-hit potential — large system prompt, short query",
+        "name": "Browser Snapshot Analysis",
+        "description": "Heavy accessibility tree — typical browser-use payload",
         "messages": [
             {
                 "role": "system",
-                "content": (
-                    "You are an expert financial analyst with deep knowledge of "
-                    "global markets, derivatives, risk management, portfolio theory, "
-                    "macroeconomic indicators, central bank policies, and quantitative "
-                    "finance. You specialize in analyzing market trends, evaluating "
-                    "investment strategies, and providing detailed risk assessments. "
-                    "Your analysis should be thorough, data-driven, and consider "
-                    "multiple perspectives including bull and bear cases. Always "
-                    "provide specific metrics, ratios, and benchmarks when relevant. "
-                    "Consider regulatory implications, geopolitical risks, and "
-                    "cross-asset correlations in your analysis. When discussing "
-                    "strategies, include risk-adjusted return metrics such as Sharpe "
-                    "ratio, Sortino ratio, and maximum drawdown. Provide your "
-                    "analysis in a structured format with clear sections for "
-                    "executive summary, detailed analysis, risk factors, and "
-                    "actionable recommendations. Always caveat your analysis with "
-                    "appropriate disclaimers about market uncertainty and the "
-                    "limitations of any predictive model."
-                ),
-            },
-            {"role": "user", "content": "What's the outlook for US treasuries this quarter?"},
-        ],
-    },
-    {
-        "name": "Tool-Heavy Request",
-        "description": "Vault Mode potential — JSON tool definitions",
-        "messages": [
-            {
-                "role": "system",
-                "content": "You are a helpful assistant with access to tools.",
+                "content": "You are a web automation assistant. You control a browser via snapshots of the accessibility tree. Each element has a ref you can use to interact with it.",
             },
             {
                 "role": "user",
-                "content": json.dumps({
-                    "query": "Look up the weather in San Francisco and book a restaurant",
-                    "tools": [
-                        {
-                            "type": "function",
-                            "function": {
-                                "name": "get_weather",
-                                "description": "Get current weather for a location",
-                                "parameters": {
-                                    "type": "object",
-                                    "properties": {
-                                        "location": {"type": "string", "description": "City name"},
-                                        "units": {"type": "string", "enum": ["celsius", "fahrenheit"]},
-                                    },
-                                    "required": ["location"],
-                                },
-                            },
-                        },
-                        {
-                            "type": "function",
-                            "function": {
-                                "name": "search_restaurants",
-                                "description": "Search for restaurants by cuisine and location",
-                                "parameters": {
-                                    "type": "object",
-                                    "properties": {
-                                        "location": {"type": "string"},
-                                        "cuisine": {"type": "string"},
-                                        "price_range": {"type": "string", "enum": ["$", "$$", "$$$", "$$$$"]},
-                                        "party_size": {"type": "integer"},
-                                    },
-                                    "required": ["location"],
-                                },
-                            },
-                        },
-                        {
-                            "type": "function",
-                            "function": {
-                                "name": "make_reservation",
-                                "description": "Make a restaurant reservation",
-                                "parameters": {
-                                    "type": "object",
-                                    "properties": {
-                                        "restaurant_id": {"type": "string"},
-                                        "date": {"type": "string", "format": "date"},
-                                        "time": {"type": "string"},
-                                        "party_size": {"type": "integer"},
-                                    },
-                                    "required": ["restaurant_id", "date", "time", "party_size"],
-                                },
-                            },
-                        },
-                    ],
-                }),
+                "content": "I need to navigate to the CacheForge skills repo and star it. Here's the current browser snapshot:\n\n" + _FAKE_BROWSER_SNAPSHOT + "\n\nWhat element should I click to star the repo?",
             },
         ],
     },
     {
-        "name": "Multi-Turn Conversation",
-        "description": "Context accumulation — 4-turn dialogue",
-        "messages": [
-            {"role": "system", "content": "You are a helpful coding assistant."},
-            {"role": "user", "content": "I need to build a REST API in Python. What framework should I use?"},
-            {"role": "assistant", "content": "For a REST API in Python, I'd recommend FastAPI. It's modern, fast, has automatic OpenAPI docs, and great type hints support. Flask is also a solid choice if you prefer simplicity."},
-            {"role": "user", "content": "Let's go with FastAPI. How do I set up the project structure?"},
-            {"role": "assistant", "content": "Here's a recommended structure:\n\n```\nmy-api/\n  app/\n    __init__.py\n    main.py\n    routers/\n    models/\n    schemas/\n  tests/\n  requirements.txt\n```\n\nStart with `main.py` as the entry point with your FastAPI app instance."},
-            {"role": "user", "content": "Now add a users endpoint with CRUD operations and Pydantic models."},
-        ],
-    },
-    {
-        "name": "Code Generation",
-        "description": "Medium complexity — generate a Python class",
-        "messages": [
-            {
-                "role": "user",
-                "content": (
-                    "Write a Python class called `LRUCache` that implements a "
-                    "least-recently-used cache with the following features:\n"
-                    "- Constructor takes `capacity: int`\n"
-                    "- `get(key)` returns the value or -1 if not found\n"
-                    "- `put(key, value)` inserts or updates the value\n"
-                    "- Both operations should be O(1) time complexity\n"
-                    "- Use a doubly linked list and a hash map\n"
-                    "- Include type hints and a docstring"
-                ),
-            },
-        ],
-    },
-    {
-        "name": "Repeated System Prompt",
-        "description": "Cache-hit potential — identical system prompt, different query",
+        "name": "HTML Page Processing",
+        "description": "Large HTML payload — web scraping / extraction workload",
         "messages": [
             {
                 "role": "system",
-                "content": (
-                    "You are an expert financial analyst with deep knowledge of "
-                    "global markets, derivatives, risk management, portfolio theory, "
-                    "macroeconomic indicators, central bank policies, and quantitative "
-                    "finance. You specialize in analyzing market trends, evaluating "
-                    "investment strategies, and providing detailed risk assessments. "
-                    "Your analysis should be thorough, data-driven, and consider "
-                    "multiple perspectives including bull and bear cases. Always "
-                    "provide specific metrics, ratios, and benchmarks when relevant. "
-                    "Consider regulatory implications, geopolitical risks, and "
-                    "cross-asset correlations in your analysis. When discussing "
-                    "strategies, include risk-adjusted return metrics such as Sharpe "
-                    "ratio, Sortino ratio, and maximum drawdown. Provide your "
-                    "analysis in a structured format with clear sections for "
-                    "executive summary, detailed analysis, risk factors, and "
-                    "actionable recommendations. Always caveat your analysis with "
-                    "appropriate disclaimers about market uncertainty and the "
-                    "limitations of any predictive model."
-                ),
+                "content": "You are a data extraction assistant. Parse HTML pages and extract structured data.",
             },
-            {"role": "user", "content": "Summarize the key risks of investing in emerging market bonds."},
+            {
+                "role": "user",
+                "content": "Extract the key metrics from this analytics dashboard HTML and summarize the business performance:\n\n" + _FAKE_HTML_BODY,
+            },
+        ],
+    },
+    {
+        "name": "JSON API Response Analysis",
+        "description": "Large structured JSON — typical API integration payload",
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a data analyst assistant. Analyze API responses and provide insights.",
+            },
+            {
+                "role": "user",
+                "content": "Analyze this user management API response and give me a summary of user distribution, plan adoption, and any concerns:\n\n```json\n" + _FAKE_API_RESPONSE + "\n```",
+            },
+        ],
+    },
+    {
+        "name": "Heavy Tool Schema",
+        "description": "10 tool definitions — agent framework overhead",
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a capable AI assistant with access to browser, file, search, and web tools. Use the most appropriate tool for each task.",
+            },
+            {
+                "role": "user",
+                "content": "Search for the latest CacheForge release notes, then navigate to the GitHub repo and check if there are any open issues.",
+            },
+        ],
+        "tools": _HEAVY_TOOL_SCHEMA,
+    },
+    {
+        "name": "Multi-Turn with Tool Results",
+        "description": "Accumulated context — conversation with prior tool outputs and HTML",
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a web research assistant with browser and fetch capabilities. You help users research products, compare pricing, and make informed decisions.",
+            },
+            {"role": "user", "content": "Find me the latest pricing for OpenAI's API and compare it to Anthropic."},
+            {"role": "assistant", "content": "I'll fetch both pricing pages for you."},
+            {
+                "role": "user",
+                "content": "Here's what web_fetch returned for OpenAI:\n\n" + json.dumps({
+                    "url": "https://openai.com/api/pricing",
+                    "status": 200,
+                    "content": "# API Pricing\n\n## GPT-4o\n- Input: $2.50 / 1M tokens\n- Cached input: $1.25 / 1M tokens\n- Output: $10.00 / 1M tokens\n\n## GPT-4o mini\n- Input: $0.150 / 1M tokens\n- Cached input: $0.075 / 1M tokens\n- Output: $0.600 / 1M tokens\n\n## GPT-4 Turbo\n- Input: $10.00 / 1M tokens\n- Output: $30.00 / 1M tokens\n\n## o1\n- Input: $15.00 / 1M tokens\n- Cached input: $7.50 / 1M tokens\n- Output: $60.00 / 1M tokens\n\n## o1-mini\n- Input: $1.10 / 1M tokens\n- Cached input: $0.55 / 1M tokens\n- Output: $4.40 / 1M tokens\n\n## Embedding Models\n- text-embedding-3-small: $0.020 / 1M tokens\n- text-embedding-3-large: $0.130 / 1M tokens\n\n## Image Models\n- DALL-E 3 HD: $0.080 / image\n- DALL-E 3: $0.040 / image\n- gpt-image-1 HD: $0.080 / image\n\n## Audio Models\n- Whisper: $0.006 / minute\n- TTS: $0.015 / 1K chars\n- TTS HD: $0.030 / 1K chars",
+                    "fetchedAt": "2026-02-19T12:00:00Z",
+                }, indent=2) + "\n\nAnd here's Anthropic:\n\n" + json.dumps({
+                    "url": "https://docs.anthropic.com/en/docs/about-claude/models",
+                    "status": 200,
+                    "content": "# Model Pricing\n\n## Claude Opus 4\n- Input: $15.00 / 1M tokens\n- Output: $75.00 / 1M tokens\n- Prompt caching write: $18.75 / 1M tokens\n- Prompt caching read: $1.50 / 1M tokens\n\n## Claude Sonnet 4\n- Input: $3.00 / 1M tokens\n- Output: $15.00 / 1M tokens\n- Prompt caching write: $3.75 / 1M tokens\n- Prompt caching read: $0.30 / 1M tokens\n\n## Claude Haiku 3.5\n- Input: $0.80 / 1M tokens\n- Output: $4.00 / 1M tokens\n- Prompt caching write: $1.00 / 1M tokens\n- Prompt caching read: $0.08 / 1M tokens\n\n## Context Windows\n- Opus 4: 200K (1M beta)\n- Sonnet 4: 200K (1M beta)\n- Haiku 3.5: 200K",
+                    "fetchedAt": "2026-02-19T12:00:00Z",
+                }, indent=2) + "\n\nI'm spending about $500/month across both providers. Build me a comparison table and estimate what CacheForge would save me on each.",
+            },
+        ],
+    },
+    {
+        "name": "Repeated Heavy Context",
+        "description": "Same browser snapshot, new question — cache-hit potential",
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a web automation assistant. You control a browser via snapshots of the accessibility tree. Each element has a ref you can use to interact with it.",
+            },
+            {
+                "role": "user",
+                "content": "Here's the current page snapshot:\n\n" + _FAKE_BROWSER_SNAPSHOT + "\n\nHow many open pull requests does this repo have, and what ref would I click to see them?",
+            },
         ],
     },
 ]
@@ -356,14 +405,18 @@ BUILTIN_PROMPTS = [
 # ---------------------------------------------------------------------------
 
 def _openai_chat(base_url: str, api_key: str, model: str,
-                 messages: list, max_tokens: int = 256) -> dict:
+                 messages: list, max_tokens: int = 256,
+                 tools: list | None = None) -> dict:
     """Send a chat completion request (OpenAI-compatible API)."""
     url = f"{base_url.rstrip('/')}/chat/completions"
-    payload = json.dumps({
+    body = {
         "model": model,
         "messages": messages,
         "max_tokens": max_tokens,
-    }).encode()
+    }
+    if tools:
+        body["tools"] = tools
+    payload = json.dumps(body).encode()
 
     req = urllib.request.Request(url, data=payload, headers={
         "Authorization": f"Bearer {api_key}",
@@ -477,7 +530,8 @@ def run_benchmark(base_url: str, api_key: str, model: str,
         sys.stdout.flush()
 
         resp = _openai_chat(base_url, api_key, model,
-                            prompt["messages"], max_tokens)
+                            prompt["messages"], max_tokens,
+                            tools=prompt.get("tools"))
 
         if resp["ok"]:
             cost = estimate_cost(model, resp["prompt_tokens"],
