@@ -78,10 +78,18 @@ python3 bench.py run --provider openai --model gpt-4o-mini --prompts my-prompts.
 - Cost estimates use approximate public pricing.
 - All API calls use the OpenAI-compatible chat completions format.
 
+## Install
+
+```bash
+clawhub install cacheforge-bench
+```
+
+Or clone from [GitHub](https://github.com/cacheforge-ai/cacheforge-skills).
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
 
-## Links
+---
 
-- [CacheForge](https://app.anvil-ai.io)
+Part of the [CacheForge](https://app.anvil-ai.io) toolkit — enterprise-grade LLM optimization for agent workflows.

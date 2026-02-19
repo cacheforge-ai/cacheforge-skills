@@ -4,6 +4,8 @@
 Stdlib-only (no external deps). Measures tokens, latency, and cost across
 providers. Renders rich terminal reports with Unicode box drawing and ANSI
 colours.
+
+Part of the CacheForge toolkit — https://app.anvil-ai.io
 """
 
 import argparse
