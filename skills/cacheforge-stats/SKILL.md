@@ -1,9 +1,21 @@
 ---
 name: cacheforge-stats
-description: CacheForge terminal dashboard — usage, savings, and performance metrics.
+version: 1.0.0
+description: CacheForge terminal dashboard — usage, savings, and performance metrics. See exactly where your tokens go.
+author: CacheForge
 license: MIT
 homepage: https://app.anvil-ai.io
 user-invocable: true
+tags:
+  - cacheforge
+  - metrics
+  - dashboard
+  - ai-agents
+  - token-optimization
+  - llm
+  - observability
+  - discord
+  - discord-v2
 metadata: {"openclaw":{"emoji":"📊","homepage":"https://app.anvil-ai.io","primaryEnv":"CACHEFORGE_API_KEY","requires":{"bins":["python3"],"env":["CACHEFORGE_API_KEY"]}}}
 ---
 
@@ -20,16 +32,16 @@ Use this skill when the user wants to:
 
 ```bash
 # Full terminal dashboard
-python skills/cacheforge-stats/dashboard.py dashboard
+python3 skills/cacheforge-stats/dashboard.py dashboard
 
 # Usage summary
-python skills/cacheforge-stats/dashboard.py usage --window 7d
+python3 skills/cacheforge-stats/dashboard.py usage --window 7d
 
 # Breakdown by model/provider/key
-python skills/cacheforge-stats/dashboard.py breakdown --by model
+python3 skills/cacheforge-stats/dashboard.py breakdown --by model
 
 # Savings-focused view
-python skills/cacheforge-stats/dashboard.py savings
+python3 skills/cacheforge-stats/dashboard.py savings
 ```
 
 ## Environment Variables

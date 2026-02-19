@@ -1,9 +1,21 @@
 ---
 name: cacheforge-ops
-description: CacheForge operations — check balance, top up, manage upstream, API keys.
+version: 1.0.0
+description: CacheForge operations — check balance, top up, manage upstream, API keys. Pay-as-you-go with Stripe or crypto.
+author: CacheForge
 license: MIT
 homepage: https://app.anvil-ai.io
 user-invocable: true
+tags:
+  - cacheforge
+  - billing
+  - operations
+  - ai-agents
+  - token-optimization
+  - llm
+  - api-keys
+  - discord
+  - discord-v2
 metadata: {"openclaw":{"emoji":"💰","homepage":"https://app.anvil-ai.io","primaryEnv":"CACHEFORGE_API_KEY","requires":{"bins":["python3"],"env":["CACHEFORGE_API_KEY"]}}}
 ---
 
@@ -11,7 +23,7 @@ metadata: {"openclaw":{"emoji":"💰","homepage":"https://app.anvil-ai.io","prim
 
 Use this skill when the user wants to:
 - Check their CacheForge balance
-- Top up credits (Stripe)
+- Top up credits (Stripe or crypto)
 - Enable/configure auto top-up
 - View or change upstream provider
 - Manage API keys
@@ -29,28 +41,28 @@ When you encounter a 402 error from CacheForge:
 
 ```bash
 # Check balance and billing status
-python skills/cacheforge-ops/ops.py balance
+python3 skills/cacheforge-ops/ops.py balance
 
 # Create a top-up payment link ($10 USD)
-python skills/cacheforge-ops/ops.py topup --amount 10
+python3 skills/cacheforge-ops/ops.py topup --amount 10
 
 # Enable auto top-up ($10 when balance drops below $2)
-python skills/cacheforge-ops/ops.py auto-topup --enable --threshold 200 --amount 1000
+python3 skills/cacheforge-ops/ops.py auto-topup --enable --threshold 200 --amount 1000
 
 # View upstream provider config
-python skills/cacheforge-ops/ops.py upstream
+python3 skills/cacheforge-ops/ops.py upstream
 
 # Set upstream provider
-python skills/cacheforge-ops/ops.py upstream --set --kind openrouter --api-key sk-or-...
+python3 skills/cacheforge-ops/ops.py upstream --set --kind openrouter --api-key sk-or-...
 
 # List API keys
-python skills/cacheforge-ops/ops.py keys
+python3 skills/cacheforge-ops/ops.py keys
 
 # Create a new API key
-python skills/cacheforge-ops/ops.py keys --create
+python3 skills/cacheforge-ops/ops.py keys --create
 
 # View tenant info
-python skills/cacheforge-ops/ops.py info
+python3 skills/cacheforge-ops/ops.py info
 ```
 
 ## Environment Variables

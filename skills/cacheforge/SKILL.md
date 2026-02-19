@@ -1,101 +1,94 @@
 ---
 name: cacheforge
-description: Connect OpenClaw to CacheForge — proprietary optimization that cuts your agent's token bill by up to 93%.
+version: 1.0.0
+description: CacheForge primary skill — bootstrap onboarding + ops + stats for the OpenAI-compatible token optimization gateway. Cut your LLM bill by up to 30% (results vary by provider/workload).
+author: CacheForge
 license: MIT
 homepage: https://app.anvil-ai.io
 user-invocable: true
+tags:
+  - cacheforge
+  - ai-agents
+  - token-optimization
+  - llm
+  - cost-reduction
+  - openai
+  - proxy
+  - gateway
+  - discord
+  - discord-v2
 metadata: {"openclaw":{"emoji":"🧠","homepage":"https://app.anvil-ai.io"}}
 ---
 
-## When to use this skill
+## Purpose
 
-Use this skill when the user asks to:
-- connect OpenClaw to a **proxy / gateway** to reduce token spend
-- configure **models.providers** (OpenAI-compatible, Anthropic Messages)
-- validate that **prompt caching** is working and measure cached tokens
+`cacheforge` is the primary entrypoint skill. Install this one skill first.
 
-## What CacheForge is
+On first use, it bootstraps companion skills if missing:
+- `cacheforge-setup`
+- `cacheforge-ops`
+- `cacheforge-stats`
 
-CacheForge is a drop-in optimization layer in front of OpenAI / OpenRouter / Anthropic that:
-- applies proprietary multi-layer optimization to reduce token usage by up to 93%
-- injects `stream_options.include_usage=true` for OpenAI-compatible streaming, so cached tokens are visible
-- logs usage and latency per request
-- exposes a real-time savings dashboard
+Then it routes the user request:
+- setup/onboarding -> `cacheforge-setup`
+- billing/upstream/keys -> `cacheforge-ops`
+- usage/savings dashboard -> `cacheforge-stats`
 
-## Setup (OpenAI-compatible)
+## CacheForge Positioning
 
-1) In CacheForge Console → Settings:
-- Create a tenant API key (`cfk_...`)
-- Configure your upstream provider and upstream API key
+CacheForge is an OpenAI-compatible gateway for agent workflows.
+It can reduce wasted spend and improve repeat-turn performance (results vary by provider/workload).
 
-2) In your OpenClaw config (`~/.openclaw/openclaw.json`), add a provider:
+Vault Mode (Pro) is for tool-heavy agents.
+Verify results in the CacheForge dashboard.
 
-```jsonc
-{
-  "models": {
-    "mode": "merge",
-    "providers": {
-      "cacheforge": {
-        "baseUrl": "https://app.anvil-ai.io/v1",
-        "apiKey": "${CACHEFORGE_API_KEY}",
-        "api": "openai-completions",
-        "models": [
-          { "id": "gpt-4o-mini", "name": "GPT-4o mini" }
-        ]
-      }
-    }
-  },
-  "agents": {
-    "defaults": { "model": { "primary": "cacheforge/gpt-4o-mini" } }
-  }
-}
+## Bootstrap Workflow (Required)
+
+Before routing to companion skills, run:
+
+```bash
+bash "{baseDir}/scripts/bootstrap-companions.sh"
 ```
 
-3) Provide the key to OpenClaw safely (choose one):
+If bootstrap fails because `clawhub` is missing, tell the user to install companions manually:
 
-### Option A: Environment variable
-Set `CACHEFORGE_API_KEY` in your shell / service env, then launch OpenClaw.
-
-### Option B: OpenClaw skills entries (per-run injection)
-Add:
-
-```jsonc
-{
-  "skills": {
-    "entries": {
-      "cacheforge": {
-        "enabled": true,
-        "env": { "CACHEFORGE_API_KEY": "cf_live_...YOUR_KEY..." }
-      }
-    }
-  }
-}
+```bash
+for s in cacheforge-setup cacheforge-ops cacheforge-stats; do clawhub install "$s"; done
 ```
 
-## Setup (Anthropic Messages)
+## Routing Rules
 
-Use `api: "anthropic-messages"` and point at the same baseUrl:
+Use these routes after bootstrap:
 
-```jsonc
-{
-  "models": {
-    "providers": {
-      "cacheforge_anthropic": {
-        "baseUrl": "https://app.anvil-ai.io",
-        "apiKey": "${CACHEFORGE_API_KEY}",
-        "api": "anthropic-messages",
-        "models": [{ "id": "claude-3-7-sonnet-latest", "name": "Claude Sonnet" }]
-      }
-    }
-  }
-}
-```
+- Setup / first-time onboarding:
+  - `python3 "{baseDir}/../cacheforge-setup/setup.py" provision ...`
+  - `python3 "{baseDir}/../cacheforge-setup/setup.py" openclaw-apply --set-default`
+  - `python3 "{baseDir}/../cacheforge-setup/setup.py" validate`
 
-CacheForge routes `/v1/messages` to the configured upstream.
+- Account ops:
+  - `python3 "{baseDir}/../cacheforge-ops/ops.py" balance`
+  - `python3 "{baseDir}/../cacheforge-ops/ops.py" topup --amount 10 --method stripe`
+  - `python3 "{baseDir}/../cacheforge-ops/ops.py" topup --amount 10 --method crypto`
+  - `python3 "{baseDir}/../cacheforge-ops/ops.py" upstream ...`
+  - `python3 "{baseDir}/../cacheforge-ops/ops.py" keys ...`
 
-## Validate caching + telemetry
+- Stats / savings:
+  - `python3 "{baseDir}/../cacheforge-stats/dashboard.py" dashboard`
+  - `python3 "{baseDir}/../cacheforge-stats/dashboard.py" usage --window 7d`
+  - `python3 "{baseDir}/../cacheforge-stats/dashboard.py" breakdown --by model`
 
-- Open CacheForge dashboard → Requests (7d) should increase.
-- Cached tokens will show up when the provider supports caching and your prompts are long/repetitive enough.
+## Onboarding Guardrails
 
-Tip: If you stream OpenAI-compatible responses, CacheForge will request usage in-stream automatically.
+Always enforce this order for new users:
+1. Register + verify email (if required by deployment).
+2. Create tenant API key (`cf_...`).
+3. Configure upstream provider (`openrouter`, `anthropic`, or `custom`).
+4. Apply OpenClaw provider config (with backup).
+5. Top up credits (minimum top-up is typically `$10`).
+6. Run a validation request and check dashboard telemetry.
+
+## Public Copy Rules
+
+- Do not use hard numeric savings claims in public-facing output unless linked to a reproducible benchmark.
+- Do not reveal Vault internals.
+- Keep copy outcome-focused and include "results vary by provider/workload" when relevant.
