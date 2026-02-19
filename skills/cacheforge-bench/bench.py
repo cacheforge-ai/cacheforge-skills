@@ -316,6 +316,7 @@ BUILTIN_PROMPTS = [
                 "content": "I need to navigate to the CacheForge skills repo and star it. Here's the current browser snapshot:\n\n" + _FAKE_BROWSER_SNAPSHOT + "\n\nWhat element should I click to star the repo?",
             },
         ],
+        "tools": _HEAVY_TOOL_SCHEMA,
     },
     {
         "name": "HTML Page Processing",
@@ -330,6 +331,7 @@ BUILTIN_PROMPTS = [
                 "content": "Extract the key metrics from this analytics dashboard HTML and summarize the business performance:\n\n" + _FAKE_HTML_BODY,
             },
         ],
+        "tools": _HEAVY_TOOL_SCHEMA,
     },
     {
         "name": "JSON API Response Analysis",
@@ -344,10 +346,11 @@ BUILTIN_PROMPTS = [
                 "content": "Analyze this user management API response and give me a summary of user distribution, plan adoption, and any concerns:\n\n```json\n" + _FAKE_API_RESPONSE + "\n```",
             },
         ],
+        "tools": _HEAVY_TOOL_SCHEMA,
     },
     {
         "name": "Heavy Tool Schema",
-        "description": "10 tool definitions — agent framework overhead",
+        "description": "10 tool definitions + lightweight query — pure schema overhead",
         "messages": [
             {
                 "role": "system",
@@ -385,6 +388,7 @@ BUILTIN_PROMPTS = [
                 }, indent=2) + "\n\nI'm spending about $500/month across both providers. Build me a comparison table and estimate what CacheForge would save me on each.",
             },
         ],
+        "tools": _HEAVY_TOOL_SCHEMA,
     },
     {
         "name": "Repeated Heavy Context",
@@ -399,6 +403,7 @@ BUILTIN_PROMPTS = [
                 "content": "Here's the current page snapshot:\n\n" + _FAKE_BROWSER_SNAPSHOT + "\n\nHow many open pull requests does this repo have, and what ref would I click to see them?",
             },
         ],
+        "tools": _HEAVY_TOOL_SCHEMA,
     },
 ]
 
