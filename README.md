@@ -1,8 +1,8 @@
 # CacheForge — Agent Skills
 
-Cut your agent's token bill by up to 30% or more. CacheForge is a drop-in optimization layer that sits between your agent and your LLM provider. Proprietary multi-layer optimization that goes far beyond caching. One line of config. Zero code changes.
+Cut your agent's token bill by up to 30% or more. CacheForge is a drop-in proxy that sits between your agent and your LLM provider. One line of config. Zero code changes. The Pied Piper of token compression.
 
-Heavy tool/browser/JSON workloads with Vault Mode can see significantly higher reduction. Results vary by provider, model, and workload.
+Heavy tool, browser, and JSON workloads with Vault Mode can see dramatically higher savings. Results vary by provider, model, and workload.
 
 ## Install
 
@@ -69,9 +69,11 @@ Every OpenAI-compatible tool (OpenClaw, Claude Code, Cursor, Codex CLI, any agen
 
 ## What CacheForge Does
 
-CacheForge sits between your agent and your LLM provider (OpenAI, Anthropic, OpenRouter). It applies proprietary multi-layer optimization to reduce what gets sent to your provider — up to 30% or more on typical workloads, significantly higher on heavy tool/browser/JSON payloads with Vault Mode. Provider-reported usage plus transparent savings telemetry.
+CacheForge sits between your agent and your LLM provider (OpenAI, Anthropic, OpenRouter). It fundamentally reduces what gets sent to your provider — up to 30% or more on typical workloads, dramatically higher on heavy tool/browser/JSON payloads with Vault Mode.
 
-Not a cache. Not a proxy trick.
+The heavier your agent traffic, the more you save. Browser automation, structured data, tool-heavy workflows — that's where CacheForge shines brightest.
+
+Provider-reported usage. Transparent savings telemetry. Lossless.
 
 ## Agent-Native by Design
 

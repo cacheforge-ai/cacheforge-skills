@@ -74,7 +74,7 @@ python3 bench.py run --provider openai --model gpt-4o-mini --prompts my-prompts.
 
 ## Notes
 
-- Savings of up to 30% or more are typical, but results vary by provider, model, and workload.
+- Savings of up to 30% or more are typical — heavy tool, browser, and JSON workloads regularly see dramatically higher savings. The heavier your agent traffic, the more you save. Results vary by provider, model, and workload.
 - Cost estimates use approximate public pricing.
 - All API calls use the OpenAI-compatible chat completions format.
 

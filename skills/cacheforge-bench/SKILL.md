@@ -71,7 +71,7 @@ The benchmark includes 6 heavy prompts designed to represent real agent workload
 5. **Multi-Turn with Tool Results** — Accumulated context with prior tool outputs (web fetch results)
 6. **Repeated Heavy Context** — Same browser snapshot, different question (cache-hit potential)
 
-These prompts are intentionally large and structured — they represent the workloads where CacheForge's optimization layers deliver the most value.
+These prompts are intentionally large and structured — they represent the workloads where CacheForge delivers the most value. The heavier and more structured your agent traffic, the more CacheForge saves you.
 
 ## Custom Prompts Format
 
@@ -127,7 +127,7 @@ See the exact savings on the same workloads, side by side.
 
 ## Notes
 
-- Savings of up to 30% or more are typical — heavy tool/browser/JSON workloads often see significantly higher. Results vary by provider, model, and workload.
+- Savings of up to 30% or more are typical — heavy tool, browser, and JSON workloads regularly see dramatically higher savings. The heavier your agent traffic, the more CacheForge saves you. Results vary by provider, model, and workload.
 - The built-in prompt suite is designed to represent real agent workloads (browser snapshots, HTML processing, JSON APIs, tool schemas). These are the workloads where optimization matters most.
 - stdlib-only Python — no pip install required
 - Cost estimates use approximate public pricing; actual costs depend on your provider agreement

@@ -53,7 +53,7 @@ Use this skill when the user wants to:
    - `python3 skills/cacheforge-ops/ops.py topup --amount 10 --method crypto`
 
 Important (Vault Mode):
-- Vault Mode virtualizes tool outputs only when the request advertises a fetch-capable tool definition (`web_fetch` or `browser`).
+- Vault Mode activates deeper optimization only when the request includes fetch-capable tool definitions (`web_fetch` or `browser`).
 - Without a fetch tool definition, CacheForge fail-opens with reason `no_fetch_tool`.
 
 ## Commands
