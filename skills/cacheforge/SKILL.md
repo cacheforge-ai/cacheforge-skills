@@ -1,10 +1,10 @@
 ---
 name: cacheforge
 version: 1.0.0
-description: CacheForge primary skill — bootstrap onboarding + ops + stats for the OpenAI-compatible token optimization gateway. Cut your LLM bill by up to 30% or more (results vary by provider/workload).
+description: CacheForge primary skill — bootstrap onboarding + ops + stats for the OpenAI-compatible token optimization gateway. Operational gateway workflow for OpenAI-compatible agent traffic.
 author: CacheForge
 license: MIT
-homepage: https://app.anvil-ai.io
+homepage: https://github.com/cacheforge-ai/cacheforge-skills
 user-invocable: true
 tags:
   - cacheforge
@@ -17,7 +17,7 @@ tags:
   - gateway
   - discord
   - discord-v2
-metadata: {"openclaw":{"emoji":"🧠","homepage":"https://app.anvil-ai.io"}}
+metadata: {"openclaw":{"emoji":"🧠","homepage":"https://github.com/cacheforge-ai/cacheforge-skills"}}
 ---
 
 ## Purpose

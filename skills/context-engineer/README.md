@@ -2,7 +2,7 @@
 
 **Context Window Optimizer** — Analyze, audit, and optimize your agent's context utilization. Know exactly where your tokens go before they're sent.
 
-Built by [CacheForge](https://app.anvil-ai.io) — context engineering experts.
+Built by the CacheForge open-source team.
 
 ## Features
 
@@ -60,7 +60,3 @@ Or clone from [GitHub](https://github.com/cacheforge-ai/cacheforge-skills).
 ## License
 
 MIT — see [LICENSE](./LICENSE).
-
----
-
-Part of the [CacheForge](https://app.anvil-ai.io) toolkit — enterprise-grade LLM optimization for agent workflows.

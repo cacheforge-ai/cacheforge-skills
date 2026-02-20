@@ -4,7 +4,7 @@ version: 1.0.0
 description: Context window optimizer — analyze, audit, and optimize your agent's context utilization. Know exactly where your tokens go before they're sent.
 author: CacheForge
 license: MIT
-homepage: https://app.anvil-ai.io
+homepage: https://github.com/cacheforge-ai/cacheforge-skills
 user-invocable: true
 tags:
   - cacheforge
@@ -16,7 +16,7 @@ tags:
   - observability
   - discord
   - discord-v2
-metadata: {"openclaw":{"emoji":"🔬","homepage":"https://app.anvil-ai.io","requires":{"bins":["python3"]}}}
+metadata: {"openclaw":{"emoji":"🔬","homepage":"https://github.com/cacheforge-ai/cacheforge-skills","requires":{"bins":["python3"]}}}
 ---
 
 ## When to use this skill
@@ -68,4 +68,4 @@ python3 skills/context-engineer/context.py compare --before before.json --after 
 
 - Token estimates are approximate (~4 characters per token). For precise counts, use a model-specific tokenizer.
 - No external dependencies required — runs with Python 3 stdlib only.
-- Built by CacheForge — context engineering experts. https://app.anvil-ai.io
+- Built by CacheForge — context engineering experts. https://<cacheforge-endpoint>

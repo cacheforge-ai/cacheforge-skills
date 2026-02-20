@@ -2,8 +2,6 @@
 
 **Production-grade agent DevOps toolkit** — Docker, process management, log analysis, and health monitoring in one unified CLI. Built by engineers who run production systems.
 
-Part of the [CacheForge](https://app.anvil-ai.io) toolkit.
-
 ## Features
 
 - **Docker Operations** — Container status, log tailing with pattern detection, health checks, Compose service status
@@ -78,7 +76,3 @@ Or clone from [GitHub](https://github.com/cacheforge-ai/cacheforge-skills).
 ## License
 
 MIT — see [LICENSE](LICENSE).
-
----
-
-Part of the [CacheForge](https://app.anvil-ai.io) toolkit — enterprise-grade LLM optimization for agent workflows.

@@ -1,10 +1,10 @@
 ---
 name: cacheforge-bench
 version: 1.0.0
-description: LLM cost benchmark runner — compare providers with and without CacheForge. See exactly what you save on your own workloads.
+description: LLM cost benchmark runner — compare providers with and without CacheForge. Compare workload behavior across providers and endpoints.
 author: CacheForge
 license: MIT
-homepage: https://app.anvil-ai.io
+homepage: https://github.com/cacheforge-ai/cacheforge-skills
 user-invocable: true
 tags:
   - cacheforge
@@ -16,7 +16,7 @@ tags:
   - performance
   - discord
   - discord-v2
-metadata: {"openclaw":{"emoji":"⚡","homepage":"https://app.anvil-ai.io","requires":{"bins":["python3"]}}}
+metadata: {"openclaw":{"emoji":"⚡","homepage":"https://github.com/cacheforge-ai/cacheforge-skills","requires":{"bins":["python3"]}}}
 ---
 
 ## When to use this skill
@@ -24,7 +24,7 @@ metadata: {"openclaw":{"emoji":"⚡","homepage":"https://app.anvil-ai.io","requi
 Use this skill when the user wants to:
 - Benchmark LLM provider costs and latency
 - Compare direct provider costs vs CacheForge costs
-- See exactly how much CacheForge saves on their workloads
+- Compare workload characteristics across providers
 - Run custom prompt benchmarks across providers
 - Generate cost comparison reports
 
@@ -37,7 +37,7 @@ python3 skills/cacheforge-bench/bench.py run --provider openai --model gpt-4o-mi
 # A/B comparison — direct provider vs CacheForge side-by-side
 python3 skills/cacheforge-bench/bench.py compare \
     --direct-url https://api.openai.com/v1 --direct-key $OPENAI_API_KEY \
-    --cacheforge-url https://app.anvil-ai.io/v1 --cacheforge-key $CACHEFORGE_API_KEY
+    --cacheforge-url https://<cacheforge-endpoint>/v1 --cacheforge-key $CACHEFORGE_API_KEY
 
 # Re-render report from saved results
 python3 skills/cacheforge-bench/bench.py report --input results.json
@@ -54,7 +54,7 @@ python3 skills/cacheforge-bench/bench.py run --provider cacheforge --model gpt-4
 
 ## Environment Variables
 
-- `CACHEFORGE_BASE_URL` — CacheForge endpoint (default: https://app.anvil-ai.io)
+- `CACHEFORGE_BASE_URL` — CacheForge endpoint (default: https://<cacheforge-endpoint>)
 - `CACHEFORGE_API_KEY` — CacheForge API key
 - `OPENAI_API_KEY` — OpenAI API key
 - `ANTHROPIC_API_KEY` — Anthropic API key
@@ -71,7 +71,7 @@ The benchmark includes 6 heavy prompts designed to represent real agent workload
 5. **Multi-Turn with Tool Results** — Accumulated context with prior tool outputs (web fetch results)
 6. **Repeated Heavy Context** — Same browser snapshot, different question (cache-hit potential)
 
-These prompts are intentionally large and structured — they represent the workloads where CacheForge delivers the most value. The heavier and more structured your agent traffic, the more CacheForge saves you.
+These prompts are intentionally large and structured — they represent the workloads where CacheForge delivers the most value. Workload characteristics vary by provider and model.
 
 ## Custom Prompts Format
 
@@ -115,7 +115,7 @@ clawhub install cacheforge-setup
 ```
 Then run `/cacheforge-setup` — it'll walk you through registration, email verification, upstream configuration, and your first credit top-up.
 
-Or register directly at https://app.anvil-ai.io
+
 
 ### Step 3: Run the A/B comparison
 ```bash
@@ -127,7 +127,7 @@ See the exact savings on the same workloads, side by side.
 
 ## Notes
 
-- Savings of up to 30% or more are typical — heavy tool, browser, and JSON workloads regularly see dramatically higher savings. The heavier your agent traffic, the more CacheForge saves you. Results vary by provider, model, and workload.
+- Results vary by provider, model, and workload.
 - The built-in prompt suite is designed to represent real agent workloads (browser snapshots, HTML processing, JSON APIs, tool schemas). These are the workloads where optimization matters most.
 - stdlib-only Python — no pip install required
 - Cost estimates use approximate public pricing; actual costs depend on your provider agreement

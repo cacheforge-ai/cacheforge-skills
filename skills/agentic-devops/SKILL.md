@@ -4,7 +4,7 @@ version: 1.0.0
 description: Production-grade agent DevOps toolkit — Docker, process management, log analysis, and health monitoring. Built by engineers who run production.
 author: CacheForge
 license: MIT
-homepage: https://app.anvil-ai.io
+homepage: https://github.com/cacheforge-ai/cacheforge-skills
 user-invocable: true
 tags:
   - cacheforge
@@ -17,7 +17,7 @@ tags:
   - sre
   - discord
   - discord-v2
-metadata: {"openclaw":{"emoji":"🛠️","homepage":"https://app.anvil-ai.io","requires":{"bins":["python3"]}}}
+metadata: {"openclaw":{"emoji":"🛠️","homepage":"https://github.com/cacheforge-ai/cacheforge-skills","requires":{"bins":["python3"]}}}
 ---
 
 ## When to use this skill

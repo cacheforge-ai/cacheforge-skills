@@ -4,7 +4,7 @@ version: 1.0.0
 description: CacheForge operations — check balance, top up, manage upstream, API keys. Pay-as-you-go with Stripe or crypto.
 author: CacheForge
 license: MIT
-homepage: https://app.anvil-ai.io
+homepage: https://github.com/cacheforge-ai/cacheforge-skills
 user-invocable: true
 tags:
   - cacheforge
@@ -16,7 +16,7 @@ tags:
   - api-keys
   - discord
   - discord-v2
-metadata: {"openclaw":{"emoji":"💰","homepage":"https://app.anvil-ai.io","primaryEnv":"CACHEFORGE_API_KEY","requires":{"bins":["python3"],"env":["CACHEFORGE_API_KEY"]}}}
+metadata: {"openclaw":{"emoji":"💰","homepage":"https://github.com/cacheforge-ai/cacheforge-skills","primaryEnv":"CACHEFORGE_API_KEY","requires":{"bins":["python3"],"env":["CACHEFORGE_API_KEY"]}}}
 ---
 
 ## When to use this skill
@@ -67,7 +67,7 @@ python3 skills/cacheforge-ops/ops.py info
 
 ## Environment Variables
 
-- `CACHEFORGE_BASE_URL` — CacheForge API base (default: https://app.anvil-ai.io)
+- `CACHEFORGE_BASE_URL` — CacheForge API base (default: https://<cacheforge-endpoint>)
 - `CACHEFORGE_API_KEY` — Your CacheForge API key (required)
 
 ## API Contract (current)

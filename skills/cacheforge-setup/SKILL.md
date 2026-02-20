@@ -4,7 +4,7 @@ version: 1.0.0
 description: Set up CacheForge — register, configure upstream, get your API key in 30 seconds. One line of config, zero code changes.
 author: CacheForge
 license: MIT
-homepage: https://app.anvil-ai.io
+homepage: https://github.com/cacheforge-ai/cacheforge-skills
 user-invocable: true
 tags:
   - cacheforge
@@ -17,7 +17,7 @@ tags:
   - proxy
   - discord
   - discord-v2
-metadata: {"openclaw":{"emoji":"⚒️","homepage":"https://app.anvil-ai.io","requires":{"bins":["python3"]}}}
+metadata: {"openclaw":{"emoji":"⚒️","homepage":"https://github.com/cacheforge-ai/cacheforge-skills","requires":{"bins":["python3"]}}}
 ---
 
 ## When to use this skill
@@ -70,24 +70,24 @@ python3 skills/cacheforge-setup/setup.py provision \
 
 # Just validate an existing setup
 python3 skills/cacheforge-setup/setup.py validate \
-  --base-url https://app.anvil-ai.io \
+  --base-url https://<cacheforge-endpoint> \
   --api-key cf_...
 
 # Print the OpenClaw snippet (same structure as the CacheForge console)
 python3 skills/cacheforge-setup/setup.py openclaw-snippet \
-  --base-url https://app.anvil-ai.io \
+  --base-url https://<cacheforge-endpoint> \
   --api-key cf_...
 
 # Apply CacheForge provider config into OpenClaw (JSON5-safe; prompts for approval)
 python3 skills/cacheforge-setup/setup.py openclaw-apply \
-  --base-url https://app.anvil-ai.io \
+  --base-url https://<cacheforge-endpoint> \
   --api-key cf_... \
   --set-default
 ```
 
 ## Environment Variables
 
-- `CACHEFORGE_BASE_URL` — CacheForge API base (default: https://app.anvil-ai.io)
+- `CACHEFORGE_BASE_URL` — CacheForge API base (default: https://<cacheforge-endpoint>)
 - `CACHEFORGE_API_KEY` — Existing API key (skip provisioning if set)
 - `CACHEFORGE_INVITE_CODE` — Invite code (required on invite-only deployments)
 - `OPENAI_API_KEY`, `OPENROUTER_API_KEY`, `ANTHROPIC_API_KEY`, `FIREWORKS_API_KEY` — Auto-detected for upstream
@@ -97,7 +97,7 @@ python3 skills/cacheforge-setup/setup.py openclaw-apply \
 
 Once provisioned, set:
 ```bash
-export OPENAI_BASE_URL=https://app.anvil-ai.io/v1
+export OPENAI_BASE_URL=https://<cacheforge-endpoint>/v1
 export OPENAI_API_KEY=cf_...  # your CacheForge tenant API key
 ```
 
