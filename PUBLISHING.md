@@ -4,19 +4,25 @@ This repo is a **skill pack**. ClawHub publishes **one skill folder at a time**.
 
 ## Public Release Set
 
-Public release set:
+Core engineering:
 - `agentic-devops`
 - `context-engineer`
-- `dep-audit`
-- `feed-diet`
-- `kube-medic`
+- `vibe-check`
+
+Observability and incident ops:
 - `log-dive`
-- `meeting-autopilot`
 - `pager-triage`
 - `prom-query`
-- `rug-checker`
+- `kube-medic`
+
+Security and risk:
+- `dep-audit`
 - `tf-plan-review`
-- `vibe-check`
+- `rug-checker`
+
+Workflow and productivity:
+- `meeting-autopilot`
+- `feed-diet`
 
 ## OpenClaw/ClawHub Requirements (grounded in local docs)
 
@@ -44,7 +50,8 @@ cd ~/cacheforge-skill
 
 # OpenClaw eligibility + metadata sanity
 openclaw skills check
-for s in agentic-devops context-engineer dep-audit feed-diet kube-medic log-dive meeting-autopilot pager-triage prom-query rug-checker tf-plan-review vibe-check; do
+PUBLIC_SKILLS=(agentic-devops context-engineer vibe-check log-dive pager-triage prom-query kube-medic dep-audit tf-plan-review rug-checker meeting-autopilot feed-diet)
+for s in "${PUBLIC_SKILLS[@]}"; do
   openclaw skills info "$s"
 done
 
@@ -63,7 +70,8 @@ cd ~/cacheforge-skill
 VERSION="0.1.0"
 CHANGELOG="Open-source agentic workflow and operations skills."
 
-for s in agentic-devops context-engineer dep-audit feed-diet kube-medic log-dive meeting-autopilot pager-triage prom-query rug-checker tf-plan-review vibe-check; do
+PUBLIC_SKILLS=(agentic-devops context-engineer vibe-check log-dive pager-triage prom-query kube-medic dep-audit tf-plan-review rug-checker meeting-autopilot feed-diet)
+for s in "${PUBLIC_SKILLS[@]}"; do
   clawhub publish "./skills/$s" \
     --slug "$s" \
     --name "$s" \
