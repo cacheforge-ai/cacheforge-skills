@@ -14,7 +14,7 @@ Compatible with OpenClaw Discord channel behavior documented for v2026.2.14+:
 ## Install
 
 ```bash
-clawhub install cacheforge/feed-diet
+clawhub install feed-diet
 ```
 
 ## Quick Start
@@ -191,7 +191,5 @@ MIT
 
 ---
 
-Built by **[CacheForge](https://app.anvil-ai.io/)**.
+Built by **[Anvil AI](https://anvil-ai.io)**.
 
-CacheForge helps reduce wasted LLM spend on agent workflows (results vary by provider/workload).
-Start with: `clawhub install cacheforge`

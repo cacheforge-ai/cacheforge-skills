@@ -2,7 +2,7 @@
 name: agentic-devops
 version: 1.0.0
 description: Production-grade agent DevOps toolkit — Docker, process management, log analysis, and health monitoring. Built by engineers who run production.
-author: CacheForge
+author: Anvil AI
 license: MIT
 homepage: https://github.com/cacheforge-ai/cacheforge-skills
 user-invocable: true

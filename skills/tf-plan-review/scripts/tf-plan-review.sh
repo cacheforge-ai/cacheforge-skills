@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # tf-plan-review — Terraform Plan Analyzer & Risk Assessor
-# Part of the CacheForge skill suite.
+# Part of the Anvil AI skill suite.
 # STRICTLY READ-ONLY: never runs terraform apply, never modifies state.
 set -euo pipefail
 
@@ -312,7 +312,7 @@ parse_plan_json() {
       resources: $resources,
       drift: $drift,
       diagnostics: $diagnostics,
-      footer: "Powered by CacheForge 🔍"
+      footer: "Powered by Anvil AI 🔍"
     }'
 
   # Also output Markdown report to stderr
@@ -460,7 +460,7 @@ RISK
 
   echo "---"
   echo ""
-  echo "*Powered by CacheForge 🔍*"
+  echo "*Powered by Anvil AI 🔍*"
 }
 
 ###############################################################################
@@ -493,7 +493,7 @@ cmd_state() {
       total_resources: 0,
       resources: [],
       message: "State is empty — no managed resources.",
-      footer: "Powered by CacheForge 🔍"
+      footer: "Powered by Anvil AI 🔍"
     }'
     return
   fi
@@ -511,7 +511,7 @@ cmd_state() {
         total_resources: 0,
         resources: [],
         message: "No resources match filter.",
-        footer: "Powered by CacheForge 🔍"
+        footer: "Powered by Anvil AI 🔍"
       }'
       return
     fi
@@ -554,7 +554,7 @@ cmd_state() {
       filter: (if $filter == "" then null else $filter end),
       total_resources: $total,
       resources: $resources,
-      footer: "Powered by CacheForge 🔍"
+      footer: "Powered by Anvil AI 🔍"
     }'
 
   # Markdown to stderr
@@ -574,7 +574,7 @@ cmd_state() {
     echo ""
     echo "---"
     echo ""
-    echo "*Powered by CacheForge 🔍*"
+    echo "*Powered by Anvil AI 🔍*"
   } >&2
 }
 
@@ -641,7 +641,7 @@ cmd_validate() {
       error_count: $errors,
       warning_count: $warnings,
       diagnostics: $diagnostics,
-      footer: "Powered by CacheForge 🔍"
+      footer: "Powered by Anvil AI 🔍"
     }'
 
   # Markdown to stderr
@@ -662,7 +662,7 @@ cmd_validate() {
     echo ""
     echo "---"
     echo ""
-    echo "*Powered by CacheForge 🔍*"
+    echo "*Powered by Anvil AI 🔍*"
   } >&2
 }
 
@@ -698,7 +698,7 @@ SAFETY:
   It NEVER runs terraform apply.
   It NEVER modifies terraform state.
 
-Powered by CacheForge 🔍
+Powered by Anvil AI 🔍
 EOF
   exit 0
 }

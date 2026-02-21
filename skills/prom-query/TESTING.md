@@ -186,4 +186,4 @@ echo "Results: ${PASS} passed, ${FAIL} failed"
 [[ $FAIL -eq 0 ]] && exit 0 || exit 1
 ```
 
-Powered by CacheForge 📊
+Powered by Anvil AI 📊

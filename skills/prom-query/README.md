@@ -36,7 +36,7 @@ Works with any Prometheus-compatible API:
 ## Install
 
 ```bash
-clawhub install cacheforge/prom-query
+clawhub install prom-query
 ```
 
 Then set your Prometheus URL:
@@ -142,27 +142,19 @@ MIT — use it however you want.
 
 ---
 
-## More from CacheForge
+## More from Anvil AI
 
-This skill is part of the **CacheForge** open skill suite.
+This skill is part of the **Anvil AI** open-source skill suite.
 
 | Skill | What it does |
 |-------|-------------|
-| **[cacheforge](https://clawhub.com/cacheforge/cacheforge)** | Connect OpenClaw to CacheForge (setup, billing, stats). |
-| **[vibe-check](https://clawhub.com/cacheforge/vibe-check)** | AI code quality + security review scorecard. |
-| **[rug-checker](https://clawhub.com/cacheforge/rug-checker)** | Solana token rug-pull risk analysis. |
-| **[dep-audit](https://clawhub.com/cacheforge/dep-audit)** | Dependency vulnerability auditing across npm/pip/cargo/go. |
-| **[prom-query](https://clawhub.com/cacheforge/prom-query)** | This skill — Prometheus query + alert triage. |
+| **[vibe-check](https://clawhub.com/skills/vibe-check)** | AI code quality + security review scorecard. |
+| **[rug-checker](https://clawhub.com/skills/rug-checker)** | Solana token rug-pull risk analysis. |
+| **[dep-audit](https://clawhub.com/skills/dep-audit)** | Dependency vulnerability auditing across npm/pip/cargo/go. |
+| **[prom-query](https://clawhub.com/skills/prom-query)** | This skill — Prometheus query + alert triage. |
 
-Start with:
-
-```bash
-clawhub install cacheforge
-```
 
 ---
 
-Built by **[CacheForge](https://app.anvil-ai.io/)**.
+Built by **[Anvil AI](https://anvil-ai.io)**.
 
-CacheForge helps reduce wasted LLM spend on agent workflows (results vary by provider/workload).
-Start with: `clawhub install cacheforge`

@@ -2,7 +2,7 @@
 name: prom-query
 version: 1.0.1
 description: "Prometheus Metrics Query & Alert Interpreter — query metrics, interpret timeseries, triage alerts"
-author: CacheForge
+author: Anvil AI
 license: MIT
 tags: [prometheus, metrics, monitoring, alerting, observability, thanos, mimir, victoriametrics, grafana, discord, discord-v2]
 tools:
@@ -207,4 +207,4 @@ If a query fails:
 - **"no data"** → The metric may not exist, or the label selector is too specific. Try `explore` to find the right metric name.
 - **Timeout** → The query is too expensive. Add filters, reduce the time range, or use `topk()`.
 
-Powered by CacheForge 📊
+Powered by Anvil AI 📊

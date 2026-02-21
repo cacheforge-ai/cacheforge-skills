@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-clawhub install cacheforge/tf-plan-review
+clawhub install tf-plan-review
 ```
 
 ## What It Does
@@ -115,9 +115,9 @@ The skill produces:
 - [ ] Rollback plan documented
 ```
 
-## More from CacheForge
+## More from Anvil AI
 
-This skill is part of the **CacheForge** open skill suite — production-grade agent skills built by engineers who actually manage infrastructure.
+This skill is part of the **Anvil AI** open-source skill suite — production-grade agent skills built by engineers who actually manage infrastructure.
 
 | Skill | What it does |
 |-------|-------------|
@@ -128,10 +128,8 @@ More skills shipping soon.
 
 ---
 
-Built by **[CacheForge](https://app.anvil-ai.io/)**.
+Built by **[Anvil AI](https://anvil-ai.io)**.
 
-CacheForge helps reduce wasted LLM spend on agent workflows (results vary by provider/workload).
-Start with: `clawhub install cacheforge`
 
 ## License
 

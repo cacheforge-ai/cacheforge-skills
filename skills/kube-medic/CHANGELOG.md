@@ -41,4 +41,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - RBAC error detection and reporting
 - Graceful error handling for missing kubectl, missing jq, and cluster connectivity failures
 
-*Powered by CacheForge 🏥*
+*Powered by Anvil AI 🏥*

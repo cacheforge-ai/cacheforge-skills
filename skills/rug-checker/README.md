@@ -44,7 +44,7 @@ Tested for OpenClaw Discord channel delivery behavior (v2026.2.14+):
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║  🛡️  CacheForge Rug Report                                 ║
+║  🛡️  Anvil AI Rug Report                                 ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  Token:  $Bonk (Bonk)
 ║  Mint:   DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263
@@ -165,27 +165,19 @@ All scripts share: common.sh (HTTP, rate limiting, formatting)
 - **Public RPC limits** — Solana's free RPC has rate limits; heavy concurrent use may see 429 errors (handled with retries)
 - **Jupiter verification** — Rugcheck's Jupiter verification data may lag behind Jupiter's actual listings
 
-## More from CacheForge
+## More from Anvil AI
 
-This skill is part of the **CacheForge** open skill suite.
+This skill is part of the **Anvil AI** open-source skill suite.
 
 | Skill | What it does |
 |-------|-------------|
-| **[cacheforge](https://clawhub.com/cacheforge/cacheforge)** | Connect OpenClaw to CacheForge (setup, billing, stats). |
-| **[vibe-check](https://clawhub.com/cacheforge/vibe-check)** | AI code quality + security review scorecard. |
-| **[prom-query](https://clawhub.com/cacheforge/prom-query)** | Prometheus metrics + alert triage from natural language. |
-| **[dep-audit](https://clawhub.com/cacheforge/dep-audit)** | Unified dependency vulnerability auditing (npm, pip, Cargo, Go) |
-| **[rug-checker](https://clawhub.com/cacheforge/rug-checker)** | This skill — Solana token rug-pull risk analysis |
+| **[vibe-check](https://clawhub.com/skills/vibe-check)** | AI code quality + security review scorecard. |
+| **[prom-query](https://clawhub.com/skills/prom-query)** | Prometheus metrics + alert triage from natural language. |
+| **[dep-audit](https://clawhub.com/skills/dep-audit)** | Unified dependency vulnerability auditing (npm, pip, Cargo, Go) |
+| **[rug-checker](https://clawhub.com/skills/rug-checker)** | This skill — Solana token rug-pull risk analysis |
 
-Start with:
-
-```bash
-clawhub install cacheforge
-```
 
 ---
 
-Built by **[CacheForge](https://app.anvil-ai.io/)**.
+Built by **[Anvil AI](https://anvil-ai.io)**.
 
-CacheForge helps reduce wasted LLM spend on agent workflows (results vary by provider/workload).
-Start with: `clawhub install cacheforge`

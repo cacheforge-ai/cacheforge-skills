@@ -7,7 +7,7 @@ description: >
   with timeline and alert correlation, check on-call schedules, acknowledge,
   resolve, and annotate — all from your agent. Read-only by default;
   write operations require explicit --confirm.
-author: CacheForge
+author: Anvil AI
 tags:
   - pagerduty
   - opsgenie
@@ -389,4 +389,4 @@ OpsGenie integration is planned for a future release. When `OPSGENIE_API_KEY` is
 
 ---
 
-<sub>Powered by [CacheForge](https://cacheforge.com) · Built for the engineer who gets paged at 3am</sub>
+<sub>Powered by [Anvil AI](https://anvil-ai.io) · Built for the engineer who gets paged at 3am</sub>

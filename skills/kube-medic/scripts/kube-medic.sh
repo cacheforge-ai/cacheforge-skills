@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # kube-medic.sh — Kubernetes Cluster Triage & Diagnostics
-# Part of the kube-medic skill for OpenClaw / CacheForge
+# Part of the kube-medic skill for OpenClaw / Anvil AI
 # All operations are READ-ONLY unless --confirm-write is passed.
 #
 # Usage: kube-medic.sh <subcommand> [options]
@@ -23,7 +23,7 @@ set -euo pipefail
 # Constants & Defaults
 ###############################################################################
 VERSION="1.0.1"
-BRAND="Powered by CacheForge 🏥"
+BRAND="Powered by Anvil AI 🏥"
 DEFAULT_SINCE="15m"
 DEFAULT_TAIL=200
 
@@ -60,7 +60,7 @@ Global flags:
   --version              Print version
   --help                 Show this help
 
-Powered by CacheForge 🏥
+Powered by Anvil AI 🏥
 EOF
   exit 0
 }

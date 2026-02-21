@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# common.sh — CacheForge DeFi Stack Shared Library
+# common.sh — Anvil AI DeFi Stack Shared Library
 # ============================================================================
 # Reusable functions for Solana DeFi skills (rug-checker, wallet-xray, etc.)
 # Source this file: source "$(dirname "$0")/common.sh"

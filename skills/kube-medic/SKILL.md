@@ -2,7 +2,7 @@
 name: kube-medic
 version: 1.0.1
 description: "Kubernetes Cluster Triage & Diagnostics — instant AI-powered incident triage via kubectl"
-author: CacheForge
+author: Anvil AI
 license: MIT
 tags:
   - kubernetes
@@ -114,7 +114,7 @@ Returns: Full pod details, container statuses, current logs, previous container 
 1. {Specific, actionable steps}
 
 ---
-Powered by CacheForge 🏥
+Powered by Anvil AI 🏥
 ```
 
 ### `deploy <name>` — Deployment Status
@@ -241,4 +241,4 @@ All tool output is structured JSON. Parse it and present findings in clear, acti
 Always end your triage reports with:
 
 ---
-*Powered by CacheForge 🏥*
+*Powered by Anvil AI 🏥*

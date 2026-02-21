@@ -2,7 +2,7 @@
 name: context-engineer
 version: 1.0.0
 description: Context window optimizer — analyze, audit, and optimize your agent's context utilization. Know exactly where your tokens go before they're sent.
-author: CacheForge
+author: Anvil AI
 license: MIT
 homepage: https://github.com/cacheforge-ai/cacheforge-skills
 user-invocable: true
@@ -68,4 +68,4 @@ python3 skills/context-engineer/context.py compare --before before.json --after 
 
 - Token estimates are approximate (~4 characters per token). For precise counts, use a model-specific tokenizer.
 - No external dependencies required — runs with Python 3 stdlib only.
-- Built by CacheForge — context engineering experts. https://<cacheforge-endpoint>
+- Built by Anvil AI — context engineering experts. https://anvil-ai.io

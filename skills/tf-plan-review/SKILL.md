@@ -5,7 +5,7 @@ description: >
   as safe, moderate, dangerous, or critical. Detects destroys, IAM changes,
   data-loss risks, and blast radius. Entirely read-only — never runs apply.
 version: 0.1.1
-author: CacheForge
+author: Anvil AI
 tags: [terraform, opentofu, iac, infrastructure, devops, risk-assessment, plan-review, security, discord, discord-v2]
 ---
 
@@ -264,4 +264,4 @@ Terraform plan JSON may contain sensitive values. The script does NOT extract re
 - If a user asks "what value is changing?", explain that you can see the change type but sensitive values are redacted by Terraform for security
 - Never store or cache plan output files
 
-## Powered by CacheForge 🔍
+## Powered by Anvil AI 🔍

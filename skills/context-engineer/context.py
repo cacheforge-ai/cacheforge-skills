@@ -6,7 +6,7 @@ box drawing, block-element bar charts, and ANSI colours.
 
 Token estimates are approximate (word-count heuristic, ~1 token per 4 chars).
 
-Part of the CacheForge toolkit — https://app.anvil-ai.io
+Part of the Anvil AI toolkit — https://anvil-ai.io
 """
 
 import argparse
@@ -502,8 +502,7 @@ def cmd_analyze(args: argparse.Namespace) -> None:
     # --- Footer ---
     print(box_sep(w))
     print(box_row(c("  \u2139  Token estimates are approximate (~4 chars/token)", DIM), w))
-    print(box_row(c("  Want automatic token optimization? Try CacheForge", DIM), w))
-    print(box_row(c("  https://app.anvil-ai.io", DIM), w))
+    print(box_row(c("  https://anvil-ai.io", DIM), w))
     print(box_bot(w))
     print()
 
@@ -643,8 +642,7 @@ def cmd_audit_tools(args: argparse.Namespace) -> None:
     print(box_empty(w))
     print(box_sep(w))
     print(box_row(c("  \u2139  Token estimates are approximate (~4 chars/token)", DIM), w))
-    print(box_row(c("  Want automatic token optimization? Try CacheForge", DIM), w))
-    print(box_row(c("  https://app.anvil-ai.io", DIM), w))
+    print(box_row(c("  https://anvil-ai.io", DIM), w))
     print(box_bot(w))
     print()
 
@@ -770,8 +768,7 @@ def cmd_report(args: argparse.Namespace) -> None:
     # Footer
     print(box_sep(w))
     print(box_row(c("  \u2139  Token estimates are approximate (~4 chars/token)", DIM), w))
-    print(box_row(c("  Want automatic token optimization? Try CacheForge", DIM), w))
-    print(box_row(c("  https://app.anvil-ai.io", DIM), w))
+    print(box_row(c("  https://anvil-ai.io", DIM), w))
     print(box_bot(w))
     print()
 
@@ -874,8 +871,7 @@ def cmd_compare(args: argparse.Namespace) -> None:
     # Footer
     print(box_sep(w))
     print(box_row(c("  \u2139  Token estimates are approximate (~4 chars/token)", DIM), w))
-    print(box_row(c("  Want automatic token optimization? Try CacheForge", DIM), w))
-    print(box_row(c("  https://app.anvil-ai.io", DIM), w))
+    print(box_row(c("  https://anvil-ai.io", DIM), w))
     print(box_bot(w))
     print()
 
@@ -911,7 +907,7 @@ def main() -> None:
             "  python3 context.py compare --before snap1.json --after snap2.json\n"
             "\n"
             "Token estimates are approximate (~4 chars/token).\n"
-            "Built by CacheForge \u2014 https://app.anvil-ai.io\n"
+            "Built by Anvil AI \u2014 https://anvil-ai.io\n"
         ),
     )
 

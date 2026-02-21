@@ -203,7 +203,7 @@ bash scripts/tf-plan-review.sh plan /tmp/tf-plan-review-local 1>/dev/null 2>/tmp
 grep -q "Terraform Plan Risk Assessment" /tmp/tf-report.md && echo "PASS: Has title"
 grep -q "Change Summary" /tmp/tf-report.md && echo "PASS: Has summary"
 grep -q "Pre-Apply Checklist" /tmp/tf-report.md && echo "PASS: Has checklist"
-grep -q "CacheForge" /tmp/tf-report.md && echo "PASS: Has branding"
+grep -q "Anvil AI" /tmp/tf-report.md && echo "PASS: Has branding"
 ```
 
 ## Test 11: Non-existent Directory

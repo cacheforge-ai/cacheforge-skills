@@ -36,4 +36,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - URL scheme validation (http/https only)
 - Comprehensive error messages with troubleshooting hints
 
-Powered by CacheForge 📊
+Powered by Anvil AI 📊

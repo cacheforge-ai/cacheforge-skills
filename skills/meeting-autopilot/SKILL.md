@@ -5,7 +5,7 @@ description: >
   follow-up email drafts, and ticket drafts. Not a summarizer. An operator.
   Accepts VTT, SRT, or plain text. Multi-pass LLM extraction.
 version: 0.1.1
-author: CacheForge
+author: Anvil AI
 tags: [meetings, productivity, action-items, email-drafts, transcripts, operations, discord, discord-v2]
 ---
 

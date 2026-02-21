@@ -4,7 +4,7 @@
 
 [![Version](https://img.shields.io/badge/version-0.1.1-blue)]()
 [![License](https://img.shields.io/badge/license-MIT-green)]()
-[![Author](https://img.shields.io/badge/by-CacheForge-orange)]()
+[![Author](https://img.shields.io/badge/by-Anvil%20AI-orange)]()
 
 ---
 
@@ -15,7 +15,7 @@
 ## Quick Install
 
 ```bash
-clawhub install cacheforge/pager-triage
+clawhub install pager-triage
 ```
 
 ## Setup (2 minutes)
@@ -139,9 +139,9 @@ See [SECURITY.md](./SECURITY.md) for the full threat model.
 
 | Skill | What It Adds |
 |-------|-------------|
-| **[prom-query](https://clawhub.com/cacheforge/prom-query)** | Query Prometheus metrics — correlate incidents with CPU, memory, latency, error rates |
-| **[kube-medic](https://clawhub.com/cacheforge/kube-medic)** | Kubernetes cluster health — check pods, restarts, OOMKills, node status |
-| **[log-dive](https://clawhub.com/cacheforge/log-dive)** | Log search — find error patterns around incident timeframes |
+| **[prom-query](https://clawhub.com/skills/prom-query)** | Query Prometheus metrics — correlate incidents with CPU, memory, latency, error rates |
+| **[kube-medic](https://clawhub.com/skills/kube-medic)** | Kubernetes cluster health — check pods, restarts, OOMKills, node status |
+| **[log-dive](https://clawhub.com/skills/log-dive)** | Log search — find error patterns around incident timeframes |
 
 Together, they give your agent a complete incident response toolkit: **see the alert → read the metrics → check the pods → search the logs → ack → resolve**.
 
@@ -164,6 +164,6 @@ MIT — see [LICENSE](./LICENSE)
 ---
 
 <p align="center">
-  <strong>Built by <a href="https://cacheforge.com">CacheForge</a></strong><br>
+  <strong>Built by <a href="https://anvil-ai.io">Anvil AI</a></strong><br>
   <em>For the engineer who gets paged at 3am</em>
 </p>

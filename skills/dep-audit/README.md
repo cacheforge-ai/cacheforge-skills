@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-clawhub install cacheforge/dep-audit
+clawhub install dep-audit
 ```
 
 ## What It Does
@@ -68,30 +68,22 @@ The skill will tell you exactly what's missing and how to install it.
 - Fix commands are printed as suggestions; the agent asks for confirmation before running any.
 - No telemetry. No tracking. No phone-home. No API keys.
 
-## More from CacheForge
+## More from Anvil AI
 
-This skill is part of the **CacheForge** open skill suite.
+This skill is part of the **Anvil AI** open-source skill suite.
 
 | Skill | What it does |
 |-------|-------------|
-| **[cacheforge](https://clawhub.com/cacheforge/cacheforge)** | Connect OpenClaw to CacheForge (setup, billing, stats). |
-| **[vibe-check](https://clawhub.com/cacheforge/vibe-check)** | AI code quality + security review scorecard. |
-| **[prom-query](https://clawhub.com/cacheforge/prom-query)** | Prometheus metrics + alert triage from natural language. |
-| **[dep-audit](https://clawhub.com/cacheforge/dep-audit)** | This skill — unified dependency vulnerability auditing |
-| **[rug-checker](https://clawhub.com/cacheforge/rug-checker)** | Solana token rug-pull risk analysis |
+| **[vibe-check](https://clawhub.com/skills/vibe-check)** | AI code quality + security review scorecard. |
+| **[prom-query](https://clawhub.com/skills/prom-query)** | Prometheus metrics + alert triage from natural language. |
+| **[dep-audit](https://clawhub.com/skills/dep-audit)** | This skill — unified dependency vulnerability auditing |
+| **[rug-checker](https://clawhub.com/skills/rug-checker)** | Solana token rug-pull risk analysis |
 
-Start with:
-
-```bash
-clawhub install cacheforge
-```
 
 ---
 
-Built by **[CacheForge](https://app.anvil-ai.io/)**.
+Built by **[Anvil AI](https://anvil-ai.io)**.
 
-CacheForge helps reduce wasted LLM spend on agent workflows (results vary by provider/workload).
-Start with: `clawhub install cacheforge`
 
 ## License
 

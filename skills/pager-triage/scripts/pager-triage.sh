@@ -4,7 +4,7 @@ set -euo pipefail
 ###############################################################################
 # pager-triage.sh — PagerDuty Incident Triage for OpenClaw
 # RUN_ID: cf_rd_20260215_2021
-# Author: CacheForge
+# Author: Anvil AI
 #
 # Subcommands:
 #   incidents  — List active PagerDuty incidents

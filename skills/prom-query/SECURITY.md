@@ -65,4 +65,4 @@ If you discover a security issue, please email security@cacheforge.dev with deta
 |---------|-----------|
 | 1.0.x   | ✅ |
 
-Powered by CacheForge 📊
+Powered by Anvil AI 📊

@@ -4,7 +4,7 @@ description: >
   Solana token rug-pull risk analysis. 10-point on-chain check with visual report.
   Zero API keys. Read-only. Not financial advice.
 version: 0.1.3
-author: CacheForge
+author: Anvil AI
 tags: [security, crypto, solana, defi, rug-pull, discord, discord-v2]
 permissions:
   - network
@@ -18,7 +18,7 @@ permissions:
 |-------|-------|
 | **Slug** | `rug-checker` |
 | **Version** | `0.1.3` |
-| **Author** | CacheForge |
+| **Author** | Anvil AI |
 | **Category** | DeFi / Security |
 | **Chain** | Solana |
 | **Risk Level** | Read-only (no wallet interactions) |

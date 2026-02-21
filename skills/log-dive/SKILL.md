@@ -5,7 +5,7 @@ description: >
   Natural language queries translated to LogQL, ES DSL, or CloudWatch filter patterns.
   Read-only. Never modifies or deletes logs.
 version: 0.1.1
-author: CacheForge
+author: Anvil AI
 tags: [logs, observability, loki, elasticsearch, cloudwatch, incident-response, sre, discord, discord-v2]
 ---
 
@@ -297,7 +297,7 @@ When presenting search results, use this structure:
 - [ ] Review recent deployments to checkout service
 
 ---
-*Powered by CacheForge 🤿*
+*Powered by Anvil AI 🤿*
 ```
 
 ## Common Workflows
@@ -331,4 +331,4 @@ When presenting search results, use this structure:
 | "401 Unauthorized" | Bad credentials | Check `LOKI_TOKEN`, `ELASTICSEARCH_TOKEN`, or AWS credentials |
 
 ---
-*Powered by CacheForge 🤿*
+*Powered by Anvil AI 🤿*

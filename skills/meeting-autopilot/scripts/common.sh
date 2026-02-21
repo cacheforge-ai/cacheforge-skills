@@ -6,7 +6,7 @@ set -euo pipefail
 
 # ── Branding ──────────────────────────────────────────────
 BRAND="Meeting Autopilot"
-BRAND_FOOTER="Powered by CacheForge ✈️"
+BRAND_FOOTER="Powered by Anvil AI ✈️"
 VERSION="0.1.1"
 
 # ── Colors (when stdout is a terminal) ────────────────────

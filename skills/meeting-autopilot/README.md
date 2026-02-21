@@ -7,7 +7,7 @@ One transcript in, ready-to-send emails out.
 ## Install
 
 ```bash
-clawhub install cacheforge/meeting-autopilot
+clawhub install meeting-autopilot
 ```
 
 ## What It Does
@@ -140,4 +140,4 @@ A: No — it requires an LLM API call. A local LLM option is planned for v1.1.
 
 ---
 
-<sub>Powered by CacheForge ✈️ | [Report an issue](https://github.com/cacheforge-ai/cacheforge-skills/issues)</sub>
+<sub>Powered by Anvil AI ✈️ | [Report an issue](https://github.com/cacheforge-ai/cacheforge-skills/issues)</sub>

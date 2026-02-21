@@ -142,4 +142,4 @@ bash scripts/log-dive.sh indices --backend cloudwatch
 
 ---
 
-*Powered by CacheForge 🤿*
+*Powered by Anvil AI 🤿*

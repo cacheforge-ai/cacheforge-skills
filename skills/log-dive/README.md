@@ -120,11 +120,9 @@ Database connection pool exhausted → checkout service NPEs → payment service
 
 ## License
 
-MIT — CacheForge 2026
+MIT — Anvil AI 2026
 
 ---
 
-Built by **[CacheForge](https://app.anvil-ai.io/)**.
+Built by **[Anvil AI](https://anvil-ai.io)**.
 
-CacheForge helps reduce wasted LLM spend on agent workflows (results vary by provider/workload).
-Start with: `clawhub install cacheforge`

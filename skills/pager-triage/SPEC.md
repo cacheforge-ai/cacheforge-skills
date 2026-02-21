@@ -19,7 +19,7 @@ description: >
   AI-powered incident triage for PagerDuty and OpsGenie. List active incidents,
   get incident details with timeline analysis, check on-call schedules, correlate
   alerts, and acknowledge/resolve with confirmation gates. Read-only by default.
-author: CacheForge
+author: Anvil AI
 tags:
   - pagerduty
   - opsgenie

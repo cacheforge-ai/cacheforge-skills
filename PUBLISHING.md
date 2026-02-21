@@ -14,6 +14,7 @@ Observability and incident ops:
 - `pager-triage`
 - `prom-query`
 - `kube-medic`
+- `swarm-self-heal`
 
 Security and risk:
 - `dep-audit`
@@ -50,7 +51,7 @@ cd ~/cacheforge-skill
 
 # OpenClaw eligibility + metadata sanity
 openclaw skills check
-PUBLIC_SKILLS=(agentic-devops context-engineer vibe-check log-dive pager-triage prom-query kube-medic dep-audit tf-plan-review rug-checker meeting-autopilot feed-diet)
+PUBLIC_SKILLS=(agentic-devops context-engineer vibe-check log-dive pager-triage prom-query kube-medic dep-audit tf-plan-review rug-checker meeting-autopilot feed-diet swarm-self-heal)
 for s in "${PUBLIC_SKILLS[@]}"; do
   openclaw skills info "$s"
 done
@@ -70,7 +71,7 @@ cd ~/cacheforge-skill
 VERSION="0.1.0"
 CHANGELOG="Open-source agentic workflow and operations skills."
 
-PUBLIC_SKILLS=(agentic-devops context-engineer vibe-check log-dive pager-triage prom-query kube-medic dep-audit tf-plan-review rug-checker meeting-autopilot feed-diet)
+PUBLIC_SKILLS=(agentic-devops context-engineer vibe-check log-dive pager-triage prom-query kube-medic dep-audit tf-plan-review rug-checker meeting-autopilot feed-diet swarm-self-heal)
 for s in "${PUBLIC_SKILLS[@]}"; do
   clawhub publish "./skills/$s" \
     --slug "$s" \

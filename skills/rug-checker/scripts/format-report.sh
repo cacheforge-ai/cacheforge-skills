@@ -6,7 +6,7 @@
 #        cat analysis.json | format-report.sh
 #
 # Reads JSON from analyze-risk.sh (file argument or stdin) and produces
-# a screenshotable Markdown report card with CacheForge branding.
+# a screenshotable Markdown report card with Anvil AI branding.
 # ============================================================================
 
 set -euo pipefail
@@ -110,7 +110,7 @@ risk_indicator() {
 _header_line="Token:  \$${TOKEN_SYMBOL} (${TOKEN_NAME})"
 _mint_line="Mint:   ${ADDRESS}"
 _risk_line="Risk:   ${COMPOSITE}/100 ${TIER_EMOJI} ${TIER}"
-_title_line="🛡️  CacheForge Rug Report"
+_title_line="🛡️  Anvil AI Rug Report"
 # Compute the widest content line (add 4 for "║  " + " ║" padding)
 _max_len=58  # minimum width
 for _line in "$_header_line" "$_mint_line" "$_risk_line" "$_title_line"; do
@@ -239,5 +239,5 @@ ${CF_DISCLAIMER:-⚠️ DISCLAIMER: This report is for informational purposes on
 
 ---
 
-_🛡️ Powered by [CacheForge](https://app.anvil-ai.io)_
+_🛡️ Powered by [Anvil AI](https://anvil-ai.io)_
 DISCLAIMER

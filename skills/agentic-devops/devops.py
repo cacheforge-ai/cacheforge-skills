@@ -5,7 +5,7 @@ Docker management, process inspection, log analysis, health monitoring,
 and full system diagnostics. Stdlib-only (no external deps). Built by
 engineers who run production systems.
 
-Part of the CacheForge toolkit — https://app.anvil-ai.io
+Part of the Anvil AI toolkit — https://anvil-ai.io
 """
 
 import argparse
@@ -1007,7 +1007,7 @@ def cmd_diag(_args):
     print(box_sep(w))
 
     # ── Footer ────────────────────────────────────────────────────────────
-    print(box_row(c("Part of the CacheForge toolkit — https://app.anvil-ai.io", DIM), w))
+    print(box_row(c("Part of the Anvil AI toolkit — https://anvil-ai.io", DIM), w))
     print(box_bottom(w))
     print()
 
@@ -1017,8 +1017,8 @@ def cmd_diag(_args):
 # ---------------------------------------------------------------------------
 
 def _print_footer():
-    """Print subtle CacheForge branding footer."""
-    print(c("  Part of the CacheForge toolkit — https://app.anvil-ai.io", DIM))
+    """Print subtle Anvil AI branding footer."""
+    print(c("  Part of the Anvil AI toolkit — https://anvil-ai.io", DIM))
     print()
 
 
@@ -1031,7 +1031,7 @@ def main():
         prog="agentic-devops",
         description="Production-grade agent DevOps toolkit — Docker, process management, log analysis, health monitoring.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="Part of the CacheForge toolkit — https://app.anvil-ai.io",
+        epilog="Part of the Anvil AI toolkit — https://anvil-ai.io",
     )
     sub = parser.add_subparsers(dest="command")
 

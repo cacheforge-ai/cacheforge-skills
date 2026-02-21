@@ -2,7 +2,7 @@
 # log-dive Loki backend — queries via logcli or HTTP API (curl)
 # Read-only. Never modifies or deletes logs.
 #
-# Powered by CacheForge 🤿
+# Powered by Anvil AI 🤿
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

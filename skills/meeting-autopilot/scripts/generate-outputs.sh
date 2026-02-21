@@ -250,6 +250,6 @@ echo "---"
 echo ""
 echo "<sub>$BRAND_FOOTER | v$VERSION | Items stored locally for cross-meeting tracking.</sub>"
 echo ""
-echo "<sub>💡 *Tip: Install via \`clawhub install cacheforge/meeting-autopilot\` for one-command meeting analysis.*</sub>"
+echo "<sub>💡 *Tip: Install via \`meeting-autopilot\` for one-command meeting analysis.*</sub>"
 
 log_ok "Report generated successfully"

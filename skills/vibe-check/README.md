@@ -20,7 +20,7 @@
 
 ```bash
 # Install from ClawHub
-clawhub install cacheforge/vibe-check
+clawhub install vibe-check
 
 # Analyze a directory
 ./scripts/vibe-check.sh src/
@@ -231,23 +231,17 @@ The tool falls back to heuristic analysis using regex patterns and code structur
 | `OPENAI_API_KEY` | OpenAI API key for GPT-4o |
 | `VIBE_CHECK_BATCH_SIZE` | Files per LLM batch (default: 3) |
 
-## More from CacheForge
+## More from Anvil AI
 
-This skill is part of the **CacheForge** open skill suite.
+This skill is part of the **Anvil AI** open-source skill suite.
 
 | Skill | What it does |
 |-------|-------------|
-| **[cacheforge](https://clawhub.com/cacheforge/cacheforge)** | Connect OpenClaw to CacheForge (setup, billing, stats). |
-| **[vibe-check](https://clawhub.com/cacheforge/vibe-check)** | This skill — AI code quality + security review scorecard. |
-| **[rug-checker](https://clawhub.com/cacheforge/rug-checker)** | Solana token rug-pull risk analysis. |
-| **[dep-audit](https://clawhub.com/cacheforge/dep-audit)** | Dependency vulnerability auditing across npm/pip/cargo/go. |
-| **[prom-query](https://clawhub.com/cacheforge/prom-query)** | Prometheus metrics + alert triage from natural language. |
+| **[vibe-check](https://clawhub.com/skills/vibe-check)** | This skill — AI code quality + security review scorecard. |
+| **[rug-checker](https://clawhub.com/skills/rug-checker)** | Solana token rug-pull risk analysis. |
+| **[dep-audit](https://clawhub.com/skills/dep-audit)** | Dependency vulnerability auditing across npm/pip/cargo/go. |
+| **[prom-query](https://clawhub.com/skills/prom-query)** | Prometheus metrics + alert triage from natural language. |
 
-Start with:
-
-```bash
-clawhub install cacheforge
-```
 
 ## License
 
@@ -255,7 +249,5 @@ MIT
 
 ---
 
-Built by **[CacheForge](https://app.anvil-ai.io/)**.
+Built by **[Anvil AI](https://anvil-ai.io)**.
 
-CacheForge helps reduce wasted LLM spend on agent workflows (results vary by provider/workload).
-Start with: `clawhub install cacheforge`

@@ -20,7 +20,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/).
 
 - Metadata normalization: `author` set to `CacheForge`.
 - README: version badge bumped to `0.1.1`.
-- README install command normalized to `clawhub install cacheforge/pager-triage`.
+- README install command normalized to `pager-triage`.
 - README: added "OpenClaw Discord v2 Ready" compatibility section.
 
 ## [0.1.0] — 2026-02-15

@@ -29,7 +29,7 @@ The agent runs the right subcommand, parses structured JSON output, cross-refere
 ## Install
 
 ```bash
-clawhub install cacheforge/kube-medic
+clawhub install kube-medic
 ```
 
 Requires `kubectl` configured with cluster access and `jq`:
@@ -134,7 +134,5 @@ MIT — use it however you want.
 
 ---
 
-Built by **[CacheForge](https://app.anvil-ai.io/)**.
+Built by **[Anvil AI](https://anvil-ai.io)**.
 
-CacheForge helps reduce wasted LLM spend on agent workflows (results vary by provider/workload).
-Start with: `clawhub install cacheforge`

@@ -14,7 +14,7 @@
 | **Display Name** | Dependency Audit |
 | **Version** | 0.1.0 |
 | **Description** | Audit your project's dependencies for known vulnerabilities. Supports npm, pip, Cargo, and Go. Zero API keys. Safe-by-default (report-only). |
-| **Author** | CacheForge |
+| **Author** | Anvil AI |
 | **Tags** | `security`, `audit`, `dependencies`, `cve`, `supply-chain` |
 | **License** | MIT |
 
@@ -88,7 +88,7 @@ description: >
   Supports npm, pip, Cargo, and Go. Zero API keys required.
   Safe-by-default: report-only mode, fix commands require confirmation.
 version: 0.1.0
-author: CacheForge
+author: Anvil AI
 tags: [security, audit, dependencies, cve, supply-chain]
 ---
 ```
