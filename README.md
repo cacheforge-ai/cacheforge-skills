@@ -22,16 +22,6 @@ Public OSS skills live under `skills/` and currently include:
 - `tf-plan-review`
 - `vibe-check`
 
-## Private Skills (Not Published)
-
-These folders are retained for internal workflows and are not part of the public ClawHub release set:
-
-- `cacheforge`
-- `cacheforge-setup`
-- `cacheforge-ops`
-- `cacheforge-stats`
-- `cacheforge-bench`
-
 ## Install
 
 ```bash
