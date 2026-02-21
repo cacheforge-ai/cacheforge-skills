@@ -7,10 +7,20 @@ Install via ClawHub or GitHub skills.
 
 ## Public Skills
 
-| Skill | What it does |
-|---|---|
-| [`context-engineer`](skills/context-engineer/) | Context analysis and structured optimization reports for agent workspaces. |
-| [`agentic-devops`](skills/agentic-devops/) | Terminal DevOps toolkit for diagnostics, logs, process, and Docker operations. |
+Public OSS skills live under `skills/` and currently include:
+
+- `agentic-devops`
+- `context-engineer`
+- `dep-audit`
+- `feed-diet`
+- `kube-medic`
+- `log-dive`
+- `meeting-autopilot`
+- `pager-triage`
+- `prom-query`
+- `rug-checker`
+- `tf-plan-review`
+- `vibe-check`
 
 ## Private Skills (Not Published)
 

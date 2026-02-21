@@ -4,9 +4,19 @@ This repo is a **skill pack**. ClawHub publishes **one skill folder at a time**.
 
 ## Public Release Set
 
-Only these two skills are in the public release set:
-- `context-engineer`
+Public release set is all non-CacheForge slugs in `skills/`:
 - `agentic-devops`
+- `context-engineer`
+- `dep-audit`
+- `feed-diet`
+- `kube-medic`
+- `log-dive`
+- `meeting-autopilot`
+- `pager-triage`
+- `prom-query`
+- `rug-checker`
+- `tf-plan-review`
+- `vibe-check`
 
 Private/internal skills in `skills/cacheforge*` are intentionally depublished and must stay out of public releases.
 
@@ -36,14 +46,16 @@ cd ~/cacheforge-skill
 
 # OpenClaw eligibility + metadata sanity
 openclaw skills check
-openclaw skills info context-engineer
-openclaw skills info agentic-devops
+for s in $(ls skills | grep -v '^cacheforge'); do
+  openclaw skills info "$s"
+done
 
 # Script syntax sanity (only where scripts exist)
 python3 -m py_compile skills/context-engineer/context.py
+python3 -m py_compile skills/agentic-devops/devops.py
 ```
 
-## Publish Public Skills
+## Publish Public Skills (Per-Slug)
 
 Pick one version for this release.
 
@@ -53,19 +65,14 @@ cd ~/cacheforge-skill
 VERSION="0.1.0"
 CHANGELOG="Open-source agentic workflow and operations skills."
 
-clawhub publish ./skills/context-engineer \
-  --slug context-engineer \
-  --name "Context Engineer" \
-  --version "$VERSION" \
-  --changelog "$CHANGELOG" \
-  --tags latest
-
-clawhub publish ./skills/agentic-devops \
-  --slug agentic-devops \
-  --name "Agentic DevOps" \
-  --version "$VERSION" \
-  --changelog "$CHANGELOG" \
-  --tags latest
+for s in $(ls skills | grep -v '^cacheforge'); do
+  clawhub publish "./skills/$s" \
+    --slug "$s" \
+    --name "$s" \
+    --version "$VERSION" \
+    --changelog "$CHANGELOG" \
+    --tags latest
+done
 ```
 
 ## Do Not Publish
@@ -83,6 +90,8 @@ Do not publish these slugs from this repo:
 mkdir -p /tmp/cf-skill-test && cd /tmp/cf-skill-test
 clawhub install context-engineer
 clawhub install agentic-devops
+clawhub install dep-audit
+clawhub install log-dive
 ```
 
 Or run a registry dry run for just this repo:
