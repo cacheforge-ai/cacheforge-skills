@@ -1,49 +1,67 @@
-# SOTA Agentic
-## Open-Source Skills
+<div align="center">
 
-Agent-first tooling, workflows, and practical operator utilities for production AI teams.
+# ⚡ Agentic Skills
 
-Install via ClawHub or GitHub skills.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Skills](https://img.shields.io/badge/skills-12-blue.svg)](#skills)
+[![ClawHub](https://img.shields.io/badge/ClawHub-published-green.svg)](https://clawhub.com)
+[![OpenClaw](https://img.shields.io/badge/OpenClaw-v2026.2.14+-purple.svg)](https://github.com/moltbot/moltbot)
+[![Discord](https://img.shields.io/badge/Discord-v2%20ready-5865F2.svg)](https://discord.com)
 
-## Public Skills
+**Production-grade agent skills for [OpenClaw](https://github.com/moltbot/moltbot) and the [ClawHub](https://clawhub.com) marketplace.**
 
-### Core Engineering
+Built by [Anvil AI](https://anvil-ai.io).
 
-| Skill | Focus |
-|---|---|
-| `agentic-devops` | Docker/process/log/health operations toolkit for production systems. |
-| `context-engineer` | Context-window analysis and optimization workflow for agent workspaces. |
-| `vibe-check` | Code-quality review for risky AI-generated implementation patterns. |
+---
 
-### Observability And Incident Ops
+*Real CLI integrations. Safe by default. Operationally focused.*
 
-| Skill | Focus |
-|---|---|
-| `log-dive` | Unified log investigation across Loki, Elasticsearch, and CloudWatch. |
-| `pager-triage` | Incident triage and on-call workflow support for PagerDuty teams. |
-| `prom-query` | Prometheus query + alert interpretation for metrics-driven debugging. |
-| `kube-medic` | Kubernetes cluster triage and diagnostics from the terminal. |
+</div>
 
-### Security And Risk
+## Skills
 
-| Skill | Focus |
-|---|---|
-| `dep-audit` | Dependency vulnerability and supply-chain checks across common ecosystems. |
-| `tf-plan-review` | Risk review for Terraform plan output before apply. |
-| `rug-checker` | Read-only Solana token risk heuristics and report generation. |
+### 🔍 Code Quality & Security
 
-### Workflow And Productivity
+| Skill | Description | Version | Install |
+|---|---|---|---|
+| [vibe-check](skills/vibe-check/) | Code quality auditor for risky AI-generated patterns. | 0.1.1 | `clawhub install vibe-check` |
+| [dep-audit](skills/dep-audit/) | Dependency vulnerability scanner (npm, pip, Cargo, Go). | 0.1.3 | `clawhub install dep-audit` |
+| [rug-checker](skills/rug-checker/) | Solana token risk analysis with visual scoring. | 0.1.3 | `clawhub install rug-checker` |
 
-| Skill | Focus |
-|---|---|
-| `meeting-autopilot` | Convert transcripts into decisions, action items, and follow-ups. |
-| `feed-diet` | Analyze HN/RSS intake and produce operator-focused reading reports. |
+### 📡 Observability & Infrastructure
 
-## Install
+| Skill | Description | Version | Install |
+|---|---|---|---|
+| [prom-query](skills/prom-query/) | Prometheus metrics query and alert interpreter. | 1.0.1 | `clawhub install prom-query` |
+| [kube-medic](skills/kube-medic/) | Kubernetes cluster triage and diagnostics. | 1.0.1 | `clawhub install kube-medic` |
+| [log-dive](skills/log-dive/) | Unified log investigation (Loki, Elasticsearch, CloudWatch). | 0.1.1 | `clawhub install log-dive` |
+| [tf-plan-review](skills/tf-plan-review/) | Terraform plan risk assessment before apply. | 0.1.1 | `clawhub install tf-plan-review` |
+
+### 🚨 Incident Response
+
+| Skill | Description | Version | Install |
+|---|---|---|---|
+| [pager-triage](skills/pager-triage/) | PagerDuty incident triage and on-call workflow support. | 0.1.1 | `clawhub install pager-triage` |
+
+### 🧠 Productivity
+
+| Skill | Description | Version | Install |
+|---|---|---|---|
+| [feed-diet](skills/feed-diet/) | Information-diet analysis across HN and RSS/OPML. | 0.1.1 | `clawhub install feed-diet` |
+| [meeting-autopilot](skills/meeting-autopilot/) | Transcript-to-action pipeline for decisions and follow-ups. | 0.1.1 | `clawhub install meeting-autopilot` |
+
+### 🛠️ Core Engineering
+
+| Skill | Description | Version | Install |
+|---|---|---|---|
+| [agentic-devops](skills/agentic-devops/) | Docker, process, log, and health operations toolkit. | 1.0.0 | `clawhub install agentic-devops` |
+| [context-engineer](skills/context-engineer/) | Context-window analysis and optimization workflows. | 1.0.0 | `clawhub install context-engineer` |
+
+## Quick Install
 
 ```bash
-clawhub install context-engineer
 clawhub install agentic-devops
+clawhub install context-engineer
 clawhub install log-dive
 clawhub install dep-audit
 ```
@@ -52,7 +70,8 @@ clawhub install dep-audit
 
 - Site: [anvil-ai.io](https://anvil-ai.io)
 - GitHub: [cacheforge-ai/cacheforge-skills](https://github.com/cacheforge-ai/cacheforge-skills)
+- ClawHub: [clawhub.com](https://clawhub.com)
 
 ## License
 
-MIT
+[MIT](LICENSE)
