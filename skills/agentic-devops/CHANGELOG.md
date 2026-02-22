@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1] - 2026-02-22
+
+### Changed
+- Rebrand to Anvil AI (labs.anvil-ai.io)
+- Normalize footer and branding across all docs
+
+
 ## [1.0.0] - 2026-02-19
 
 ### Added

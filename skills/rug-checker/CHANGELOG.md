@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4] - 2026-02-22
+
+### Changed
+- Rebrand to Anvil AI (labs.anvil-ai.io)
+- Normalize footer and branding across all docs
+
+
 All notable changes to the Rug Checker skill are documented here.
 
 ## [0.1.3] — 2026-02-16

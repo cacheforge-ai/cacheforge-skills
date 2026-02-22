@@ -1,5 +1,12 @@
 # Changelog — pager-triage
 
+## [0.1.2] - 2026-02-22
+
+### Changed
+- Rebrand to Anvil AI (labs.anvil-ai.io)
+- Normalize footer and branding across all docs
+
+
 All notable changes to this skill are documented in this file.
 
 Format follows [Keep a Changelog](https://keepachangelog.com/).

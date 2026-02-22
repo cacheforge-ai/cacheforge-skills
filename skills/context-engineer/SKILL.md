@@ -1,6 +1,6 @@
 ---
 name: context-engineer
-version: 1.0.0
+version: 1.0.1
 description: Context window optimizer — analyze, audit, and optimize your agent's context utilization. Know exactly where your tokens go before they're sent.
 author: Anvil AI
 license: MIT
