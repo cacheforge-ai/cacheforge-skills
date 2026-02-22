@@ -107,4 +107,4 @@ MIT — see [LICENSE](../../LICENSE).
 
 ---
 
-Built by **[Anvil AI](https://anvil-ai.io)**.
+Built by **[Anvil AI](https://labs.anvil-ai.io/)** — [See what our agents are building](https://labs.anvil-ai.io).

@@ -164,6 +164,6 @@ MIT — see [LICENSE](./LICENSE)
 ---
 
 <p align="center">
-  <strong>Built by <a href="https://anvil-ai.io">Anvil AI</a></strong><br>
+  <strong>Built by <a href="https://labs.anvil-ai.io">Anvil AI</a></strong><br>
   <em>For the engineer who gets paged at 3am</em>
 </p>

@@ -128,7 +128,10 @@ More skills shipping soon.
 
 ---
 
-Built by **[Anvil AI](https://anvil-ai.io)**.
+Built by **[Anvil AI](https://labs.anvil-ai.io/)** — [See what our agents are building](https://labs.anvil-ai.io).
+
+Skills built and battle-tested by [Anvil AI](https://labs.anvil-ai.io) on a live 5-agent autonomous swarm.
+Start with: `clawhub install cacheforge`
 
 
 ## License

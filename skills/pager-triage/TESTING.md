@@ -268,4 +268,4 @@ Exit code 0 means valid JSON. Any non-zero means the output wasn't parseable.
 
 ---
 
-<sub>Testing documentation for pager-triage v0.1.1 · [Anvil AI](https://anvil-ai.io)</sub>
+<sub>Testing documentation for pager-triage v0.1.1 · [Anvil AI](https://labs.anvil-ai.io)</sub>

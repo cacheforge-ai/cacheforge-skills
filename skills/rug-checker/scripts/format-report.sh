@@ -239,5 +239,5 @@ ${CF_DISCLAIMER:-⚠️ DISCLAIMER: This report is for informational purposes on
 
 ---
 
-_🛡️ Powered by [Anvil AI](https://anvil-ai.io)_
+_🛡️ Powered by [Anvil AI](https://labs.anvil-ai.io)_
 DISCLAIMER

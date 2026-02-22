@@ -188,4 +188,4 @@ The tool targets PagerDuty REST API **v2** (the current stable version as of 202
 
 ---
 
-<sub>Operability documentation for pager-triage v0.1.1 · [Anvil AI](https://anvil-ai.io)</sub>
+<sub>Operability documentation for pager-triage v0.1.1 · [Anvil AI](https://labs.anvil-ai.io)</sub>

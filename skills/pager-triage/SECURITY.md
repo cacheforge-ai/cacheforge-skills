@@ -187,4 +187,4 @@ All write operations are fully auditable:
 
 ---
 
-<sub>Security documentation for pager-triage v0.1.1 · [Anvil AI](https://anvil-ai.io)</sub>
+<sub>Security documentation for pager-triage v0.1.1 · [Anvil AI](https://labs.anvil-ai.io)</sub>

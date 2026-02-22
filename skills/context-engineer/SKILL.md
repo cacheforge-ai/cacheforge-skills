@@ -68,4 +68,4 @@ python3 skills/context-engineer/context.py compare --before before.json --after 
 
 - Token estimates are approximate (~4 characters per token). For precise counts, use a model-specific tokenizer.
 - No external dependencies required — runs with Python 3 stdlib only.
-- Built by Anvil AI — context engineering experts. https://anvil-ai.io
+- Built by Anvil AI — context engineering experts. https://labs.anvil-ai.io

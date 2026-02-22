@@ -389,4 +389,4 @@ OpsGenie integration is planned for a future release. When `OPSGENIE_API_KEY` is
 
 ---
 
-<sub>Powered by [Anvil AI](https://anvil-ai.io) · Built for the engineer who gets paged at 3am</sub>
+<sub>Powered by [Anvil AI](https://labs.anvil-ai.io) · Built for the engineer who gets paged at 3am</sub>
