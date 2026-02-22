@@ -38,7 +38,7 @@ Built by [Anvil AI](https://labs.anvil-ai.io) — R&D enterprise for agentic inf
 | [prom-query](skills/prom-query) | Prometheus metrics query and alert interpreter. | 1.0.2 | `clawhub install prom-query` |
 | [kube-medic](skills/kube-medic) | Kubernetes cluster triage and diagnostics. First responder for your pods. | 1.0.2 | `clawhub install kube-medic` |
 | [log-dive](skills/log-dive) | Unified log investigation (Loki, Elasticsearch, CloudWatch). | 0.1.2 | `clawhub install log-dive` |
-| [swarm-self-heal](skills/swarm-self-heal) | Swarm watchdog for gateway/channel/lane liveness with bounded recovery receipts. | 0.1.0 | `clawhub install swarm-self-heal` |
+| [swarm-self-heal](skills/swarm-self-heal) | Swarm watchdog for gateway/channel/lane liveness with bounded recovery receipts. | 0.1.1 | `clawhub install swarm-self-heal` |
 | [tf-plan-review](skills/tf-plan-review) | Terraform plan risk assessment before apply. | 0.1.2 | `clawhub install tf-plan-review` |
 
 ### 🚨 Incident Response
